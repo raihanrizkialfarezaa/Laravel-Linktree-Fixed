@@ -17,7 +17,27 @@
   <body>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <div class="" style="margin-left: 800px; margin-top: -20px">
+            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 800px; margin-top: -20px">
+                @auth
+                    <div class="seperti-itu text-center">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button class="btn btn-danger">LogOut</button>
+                        </form>
+                        <form action="{{ route('links.index') }}" class="d-inline">
+                            <button class="btn btn-primary">Manage Links</button>
+                        </form>
+                        <form action="{{ route('link-user') }}" class="d-inline">
+                            <button class="btn btn-primary">My Links</button>
+                        </form>
+                    </div>
+                @else
+                    <div class="seperti-itu text-center">
+                        <a href="{{ route('login') }}" class="btn btn-primary">Log In</a>
+                    </div>
+                @endauth
+            </div>
+            <div class="d-lg-none" style="margin-top: -20px">
                 @auth
                     <div class="seperti-itu text-center">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
