@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="icon" href="{{ asset('assets/image/link.png') }}">
+    <link rel="icon" href="{{ asset('assets/image/man.png') }}">
 
     <title>Hello, world!</title>
   </head>
@@ -24,11 +24,11 @@
                             @csrf
                             <button class="btn btn-danger">LogOut</button>
                         </form>
-                        <form action="{{ route('link-user') }}" class="d-inline">
-                            <button class="btn btn-primary">My Links</button>
-                        </form>
                         <form action="{{ route('links.index') }}" class="d-inline">
                             <button class="btn btn-primary">Manage Links</button>
+                        </form>
+                        <form action="{{ route('link-user') }}" class="d-inline">
+                            <button class="btn btn-primary">My Links</button>
                         </form>
                     </div>
                 @else
@@ -38,7 +38,7 @@
                 @endauth
             </div>
             <div class="col-md-12 mt-5">
-                <img src="{{ asset('assets/image/link.png') }}" width="100" height="100" class="image-bunder rounded-circle d-block mx-auto">
+                <img src="{{ asset('assets/image/man.png') }}" width="100" height="100" class="image-bunder rounded-circle d-block mx-auto">
                 <div class="mt-5"></div>
                 <div class="mt-2"></div>
                 <div class="text">

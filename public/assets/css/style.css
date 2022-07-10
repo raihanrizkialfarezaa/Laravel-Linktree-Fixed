@@ -15,6 +15,7 @@ body {
 .emboh {
     overflow-wrap: break-word;
     word-break: break-word;
+    margin-bottom: 20px !important;
     hyphens: auto;
     white-space: normal;
     background: none;

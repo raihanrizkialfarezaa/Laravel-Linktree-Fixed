@@ -7,6 +7,8 @@
         </div>
         @if(Auth::user()->roles == 'ADMIN')
             <a href="{{ route('dashboard') }}"><div class="text-center mb-3" style="color: white">Admin</div></a>
+        @elseif(Auth::user()->roles == 'KETUA')
+            <a href="{{ route('dashboard') }}"><div class="text-center mb-3" style="color: white">Ketua</div></a>
         @else
             <a href="{{ route('dashboard') }}"><div class="text-center mb-3" style="color: white">User</div></a>
         @endif
