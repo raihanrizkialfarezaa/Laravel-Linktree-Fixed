@@ -25,8 +25,13 @@ class LinksController extends Controller
                             ->get('id')
                             ->toArray();
             // dd($user_id);
-            $links = Link::whereIn('user_id', $user_id)->get();
-            return view('page.admin.links.index', compact('links'));
+            $link = Link::whereIn('user_id', $user_id)
+                          ->whereNotIn('link', ['https://', 'http://'])
+                          ->get();
+            $links = Link::whereIn('user_id', $user_id)
+                         ->whereIn('link', ['https://', 'http://'])
+                         ->get();
+            return view('page.admin.links.index', compact('links', 'link'));
         } else {
             $links = Link::where('user_id', $id)->get();
             return view('page.admin.links.index', compact('links'));

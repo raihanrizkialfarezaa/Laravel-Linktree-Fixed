@@ -71,7 +71,7 @@
                 <div class="mt-5"></div>
                 <div class="mt-2"></div>
                 <div class="seperti-itu mt-3">
-                    @forelse ($links as $row)
+                    {{-- @forelse ($links as $row)
                         @if ($row->name != null)
                             <a href="https://{{ $row->link }}" class="luweh-emboh emboh">
                                 <p class="text-emboh text-embohparah">{{ $row->name }}</p>
@@ -85,6 +85,32 @@
                         <button class="luweh-emboh emboh red-bg">
                             <p class="text-emboh text-embohparah">user ini belum memiliki link</p>
                         </button>
+                    @endforelse --}}
+                    @forelse ($links as $l)
+                        @if ($l->name != null)
+                            <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
+                                <p class="text-emboh text-embohparah">{{ $l->name }}</p>
+                            </a>
+                        @else
+                            <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
+                                <p class="text-emboh text-embohparah">{{ $l->link }}</p>
+                            </a>
+                        @endif
+                        @foreach ($link as $ls)
+                            @if ($ls->name != null)
+                                <a href="{{ $ls->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $ls->name }}</p>
+                                </a>
+                            @else
+                                <a href="{{ $ls->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $ls->link }}</p>
+                                </a>
+                            @endif
+                        @endforeach
+                    @empty
+                        <a class="luweh-emboh emboh">
+                            <p class="text-emboh text-embohparah">User belum memiliki link</p>
+                        </a>
                     @endforelse
                 </div>
             </div>

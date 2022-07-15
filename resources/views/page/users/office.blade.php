@@ -71,20 +71,31 @@
                 <div class="mt-5"></div>
                 <div class="mt-2"></div>
                 <div class="seperti-itu">
-                    @forelse ($office as $row)
-                        @if ($row->name != null)
-                            <a href="https://{{ $row->link }}" class="luweh-emboh emboh">
-                                <p class="text-emboh text-embohparah">{{ $row->name }}</p>
+                    @forelse ($offices as $l)
+                        @if ($l->name != null)
+                            <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
+                                <p class="text-emboh text-embohparah">{{ $l->name }}</p>
                             </a>
                         @else
-                            <a href="https://{{ $row->link }}" class="luweh-emboh emboh">
-                                <p class="text-emboh text-embohparah">{{ $row->link }}</p>
+                            <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
+                                <p class="text-emboh text-embohparah">{{ $l->link }}</p>
                             </a>
                         @endif
+                        @foreach ($office as $ls)
+                            @if ($ls->name != null)
+                                <a href="{{ $ls->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $ls->name }}</p>
+                                </a>
+                            @else
+                                <a href="{{ $ls->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $ls->link }}</p>
+                                </a>
+                            @endif
+                        @endforeach
                     @empty
-                        <button class="luweh-emboh emboh red-bg">
-                            <p class="text-emboh text-embohparah">belum ada link general</p>
-                        </button>
+                        <a class="luweh-emboh emboh">
+                            <p class="text-emboh text-embohparah">Belum tersedia link general</p>
+                        </a>
                     @endforelse
                 </div>
             </div>
