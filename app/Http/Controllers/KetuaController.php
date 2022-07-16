@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Office;
+use Auth;
+use App\Models\Ketua;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class OfficeController extends Controller
+class KetuaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,21 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $office = Office::all();
-        // dd($office[0]->category);
-        return view('page.admin.office.index', compact('office'));
+        $id = Auth::id();
+        // $links = Ketua::findOrFail($id)->first();
+        // dd($links->user->name);
+        if (Auth::user()->roles == 'ADMIN') {
+            // $user_id = User::where('roles', 'ADMIN')
+            //                 ->orWhere('roles', 'KETUA')
+            //                 ->get('id')
+            //                 ->toArray();
+            // dd($user_id);
+            $ketua = Ketua::all();
+            return view('page.admin.ketua.index', compact('ketua'));
+        } else {
+            return redirect('/');
+        }
+        
     }
 
     /**
@@ -27,8 +40,9 @@ class OfficeController extends Controller
      */
     public function create()
     {
+        // $user = User::where('roles', 'ADMIN')->orWhere('roles', 'KETUA')->get();
         $category = Category::all();
-        return view('page.admin.office.create', compact('category'));
+        return view('page.admin.ketua.create', compact('category'));
     }
 
     /**
@@ -40,8 +54,10 @@ class OfficeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        Office::create($data);
-        return redirect()->route('office.index');
+
+        $create = Ketua::create($data);
+        return redirect()->route('ketua.index');
+        
     }
 
     /**
@@ -63,10 +79,10 @@ class OfficeController extends Controller
      */
     public function edit($id)
     {
-        $office = Office::findOrFail($id);
+        $ketua = Ketua::findOrFail($id);
         $category = Category::all();
 
-        return view('page.admin.office.edit', compact('office', 'category'));
+        return view('page.admin.ketua.edit', compact('ketua', 'category'));
     }
 
     /**
@@ -78,14 +94,19 @@ class OfficeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $office = Office::findOrFail($id);
+        $ketua = Ketua::findOrFail($id);
         
-        $update = $office->update([
-            'links' => $request->links,
-            'name' => $request->name
+        $update = $ketua->update([
+            'name' => $request->name,
+            'link' => $request->link
         ]);
 
-        return redirect()->route('office.index');
+        if ($update) {
+            return redirect()->route('ketua.index');
+        } else {
+            dd($error);
+        }
+        
     }
 
     /**
@@ -96,10 +117,10 @@ class OfficeController extends Controller
      */
     public function destroy($id)
     {
-        $office = Office::findOrFail($id);
+        $ketua = Ketua::findOrFail($id);
 
-        $delete = $office->delete();
+        $delete = $ketua->delete();
 
-        return redirect()->route('office.index');
+        return redirect()->route('ketua.index');
     }
 }

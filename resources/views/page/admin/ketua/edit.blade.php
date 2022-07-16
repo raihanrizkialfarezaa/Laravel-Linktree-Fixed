@@ -18,34 +18,31 @@
 				<div class="card-header">
 					<div class="card-head-row">
 						<div class="card-title">Edit link</div>
-						<a href="{{ route('links.index') }}" class="btn btn-primary btn-sm ml-auto">Back</a>
+						<a href="{{ route('ketua.index') }}" class="btn btn-primary btn-sm ml-auto">Back</a>
 					</div>
 				</div>
 				
 				<div class="card-body">
-					<form action="{{ route('links.update', $links->id) }}" method="POST" enctype="multipart/form-data">
+					<form action="{{ route('ketua.update', $ketua->id) }}" method="POST" enctype="multipart/form-data">
 						@method('PUT')
 						@csrf
 						<div class="form-group">
 							<label for="judul">Link Placeholder</label>
-							<input type="text" value="{{ $links->name }}" class="form-control" name="name">
+							<input type="text" value="{{ $ketua->name }}" class="form-control" name="name">
 						</div>
 						<div class="form-group">
 							<label for="judul">Link</label>
-							<input type="text" value="{{ $links->link }}" class="form-control" name="link">
+							<input type="text" value="{{ $ketua->link }}" class="form-control" name="link">
 						</div>
-						<div class="form-group">
-							<label for="judul">Category</label>
-							<select class="form-control" name="category_id" id="">
-								@foreach ($category as $cat)
-								@if (old('category_id', $links->category_id) == $cat->category_id)
-									<option value="{{ $cat->id }}" selected>{{ $cat->name }}</option>
-								@else
-									<option value="{{ $cat->id }}">{{ $cat->name }}</option>
-								@endif
-								@endforeach
-							</select>
-						</div>
+						<select class="form-control" name="category_id" id="">
+							@foreach ($category as $cat)
+							@if (old('category_id', $ketua->category_id) == $cat->category_id)
+								<option value="{{ $cat->id }}" selected>{{ $cat->name }}</option>
+							@else
+								<option value="{{ $cat->id }}">{{ $cat->name }}</option>
+							@endif
+							@endforeach
+						</select>
 						<div class="form-group">
                             <button class="btn btn-primary btn-sm" type="submit">Save</button>
                         </div>

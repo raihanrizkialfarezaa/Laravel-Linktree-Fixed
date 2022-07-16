@@ -9,7 +9,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Link</h1>
     <a href="{{ route('link-kantor') }}" class="btn btn-primary">Go To Home</a>
-    <a href="{{ route('links.create') }}" class="btn btn-primary">Tambah Data</a>
+    <a href="{{ route('ketua.create') }}" class="btn btn-primary">Tambah Data</a>
 </div>
 
 <!-- Content Row -->
@@ -17,24 +17,22 @@
     <div class="table-responsive">
         <table class="table table-bordered">
             <tr>
-                <th>User</th>
-                <th>Category</th>
                 <th>Links</th>
+                <th>Category</th>
                 <th class="text-center">Aksi</th>
             </tr>
-            @forelse ($links as $row)
+            @forelse ($ketua as $row)
                 <tr>
-                    <th>{{ $row->user->name }}</th>
-                    <th>{{ $row->category->name }}</th>
                     <th>{{ $row->link }}</th>
+                    <th>{{ $row->category->name }}</th>
                     <th class="text-center">
-                        <form action="{{ route('links.edit', $row->id) }}" class="d-inline">
+                        <form action="{{ route('ketua.edit', $row->id) }}" class="d-inline">
                             @method('PUT')
                             <button class="btn btn-primary">
                                 Edit
                             </button>
                         </form> |
-                        <form action="{{ route('links.destroy', $row->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('ketua.destroy', $row->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Link;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class LinksController extends Controller
@@ -19,23 +20,8 @@ class LinksController extends Controller
         $id = Auth::id();
         // $links = Link::findOrFail($id)->first();
         // dd($links->user->name);
-        if (Auth::user()->roles == 'ADMIN') {
-            $user_id = User::where('roles', 'ADMIN')
-                            ->orWhere('roles', 'KETUA')
-                            ->get('id')
-                            ->toArray();
-            // dd($user_id);
-            $link = Link::whereIn('user_id', $user_id)
-                          ->whereNotIn('link', ['https://', 'http://'])
-                          ->get();
-            $links = Link::whereIn('user_id', $user_id)
-                         ->whereIn('link', ['https://', 'http://'])
-                         ->get();
-            return view('page.admin.links.index', compact('links', 'link'));
-        } else {
-            $links = Link::where('user_id', $id)->get();
-            return view('page.admin.links.index', compact('links'));
-        }
+        $links = Link::where('user_id', $id)->get();
+        return view('page.admin.links.index', compact('links'));
         
     }
 
@@ -46,8 +32,9 @@ class LinksController extends Controller
      */
     public function create()
     {
-        $user = User::where('roles', 'ADMIN')->orWhere('roles', 'KETUA')->get();
-        return view('page.admin.links.create', compact('user'));
+        // $user = User::where('roles', 'ADMIN')->orWhere('roles', 'KETUA')->get();
+        $category = Category::all();
+        return view('page.admin.links.create', compact('category'));
     }
 
     /**
@@ -61,12 +48,8 @@ class LinksController extends Controller
         $data = $request->all();
 
         $id = Auth::id();
-        if (Auth::user()->roles == 'ADMIN') {
-            $create = Link::create($data);
-        } else {
-            $data['user_id'] = $id;
-            $create = Link::create($data);
-        }
+        $data['user_id'] = $id;
+        $create = Link::create($data);
         return redirect()->route('links.index');
         
     }
@@ -91,8 +74,9 @@ class LinksController extends Controller
     public function edit($id)
     {
         $links = Link::findOrFail($id);
+        $category = Category::all();
 
-        return view('page.admin.links.edit', compact('links'));
+        return view('page.admin.links.edit', compact('links', 'category'));
     }
 
     /**

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Link;
+use App\Models\Ketua;
 use App\Models\Office;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,27 +15,64 @@ class FrontendController extends Controller
     public function index() {
         $id = Auth::id();
         DB::enableQueryLog();
-            $link = Link::where('user_id', $id)
-                         ->where(function ($query) {
+            if (Auth::user()->roles == 'KETUA') {
+                $link = Link::where('user_id', $id)
+                             ->where(function ($query) {
+                                $query->where('link', 'LIKE', 'https://%')
+                                        ->orWhere('link', 'LIKE', 'http://%');
+                                })
+                             ->groupBy('category_id')
+                             ->get()
+                             ->toArray();
+                // dd($link[0]->category);
+                
+                $links = Link::where('user_id', $id)
+                             ->whereNot(function ($query) {
+                                            $query->where('link', 'LIKE', 'https://%')
+                                                ->orWhere('link', 'LIKE', 'http://%');
+                                        })
+                             ->groupBy('category_id')
+                             ->get()
+                             ->toArray();
+                // foreach ($link as $l) {
+                //     return dd($l);
+                // }
+                $ketuas = Ketua::whereNot(function ($query) {
+                                            $query->where('link', 'LIKE', 'https://%')
+                                                ->orWhere('link', 'LIKE', 'http://%');
+                                        })
+                                ->groupBy('category_id')
+                                ->get();
+                $ketua = Ketua::where(function ($query) {
                             $query->where('link', 'LIKE', 'https://%')
-                                  ->orWhere('link', 'LIKE', 'http://%');
-                         })
-                         ->get();
-            $links = Link::where('user_id', $id)
-                          ->whereNot(function ($query) {
-                                        $query->where('link', 'LIKE', 'https://%')
-                                            ->orWhere('link', 'LIKE', 'http://%');
-                                    })
-            ->get();
-            $links = Link::where('user_id', $id)
-                          ->whereNot(function ($query) {
-                                        $query->where('link', 'LIKE', 'https://%')
-                                            ->orWhere('link', 'LIKE', 'http://%');
-                                    })
-            ->get();
+                                ->orWhere('link', 'LIKE', 'http://%');
+                        })
+                             ->groupBy('category_id')
+                             ->get();
+                $category = Category::all();
+                // foreach ($category as $cat) {
+                //     dd($category);
+                // }
+                // dd($ketuas);
+                return view('page.users.link', compact('links', 'link', 'ketua', 'ketuas', 'category'));
+            } else {
+                $link = Link::where('user_id', $id)
+                             ->where(function ($query) {
+                                $query->where('link', 'LIKE', 'https://%')
+                                        ->orWhere('link', 'LIKE', 'http://%');
+                                })
+                             ->get();
+                $links = Link::where('user_id', $id)
+                             ->whereNot(function ($query) {
+                                            $query->where('link', 'LIKE', 'https://%')
+                                                ->orWhere('link', 'LIKE', 'http://%');
+                                        })
+                             ->get();
+                return view('page.users.link', compact('links', 'link'));
+            }
+            
             // dd($id);
             // dd($link);
-            return view('page.users.link', compact('links', 'link'));
     }
     public function officelinks() {
         $offices = Office::whereNot(function ($query) {

@@ -17,13 +17,13 @@
     <div class="table-responsive">
         <table class="table table-bordered">
             <tr>
-                <th>Link Placeholder</th>
+                <th>Category Name</th>
                 <th>Links</th>
                 <th class="text-center">Aksi</th>
             </tr>
             @forelse ($office as $row)
                 <tr>
-                    <th>{{ $row->name }}</th>
+                    <th>{{ $row->category->name }}</th>
                     <th>{{ $row->link }}</th>
                     <th class="text-center">
                         <form action="{{ route('office.edit', $row->id) }}" class="d-inline">

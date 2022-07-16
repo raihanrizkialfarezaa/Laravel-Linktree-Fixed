@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Office;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class OfficeController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,8 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $office = Office::all();
-        // dd($office[0]->category);
-        return view('page.admin.office.index', compact('office'));
+        $category = Category::all();
+        return view('page.admin.category.index', compact('category'));
     }
 
     /**
@@ -27,8 +25,7 @@ class OfficeController extends Controller
      */
     public function create()
     {
-        $category = Category::all();
-        return view('page.admin.office.create', compact('category'));
+        return view('page.admin.category.create');
     }
 
     /**
@@ -40,17 +37,17 @@ class OfficeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        Office::create($data);
-        return redirect()->route('office.index');
+        $create = Category::create($data);
+        return redirect()->route('category.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
         //
     }
@@ -58,48 +55,46 @@ class OfficeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $office = Office::findOrFail($id);
-        $category = Category::all();
+        $category = Category::findOrFail($id);
 
-        return view('page.admin.office.edit', compact('office', 'category'));
+        return view('page.admin.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $office = Office::findOrFail($id);
-        
-        $update = $office->update([
-            'links' => $request->links,
+        $category = Category::findOrFail($id);
+
+        $update = $category->update([
             'name' => $request->name
         ]);
 
-        return redirect()->route('office.index');
+        return redirect()->route('category.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $office = Office::findOrFail($id);
+        $category = Category::findOrFail($id);
 
-        $delete = $office->delete();
+        $delete = $category->delete();
 
-        return redirect()->route('office.index');
+        return redirect()->route('category.index');
     }
 }

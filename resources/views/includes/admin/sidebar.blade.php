@@ -39,6 +39,16 @@
                 <i class="fas fa-fw fa-people-arrows"></i>
                 <span>Link General Office</span></a>
         </li>
+        <li class="nav-item {{ Request::is('ketua') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('ketua.index') }}">
+                <i class="fas fa-fw fa-people-arrows"></i>
+                <span>Link Ketua</span></a>
+        </li>
+        <li class="nav-item {{ Request::is('category') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('category.index') }}">
+                <i class="fas fa-fw fa-people-arrows"></i>
+                <span>Category</span></a>
+        </li>
     @else
     <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('dashboard') }}">

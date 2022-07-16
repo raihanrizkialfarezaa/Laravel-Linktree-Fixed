@@ -58,6 +58,79 @@ body {
     hyphens: none;
 }
 
+.rounded-border {
+ width: 130px;
+ height: 37px;
+ background: linear-gradient(278.47deg, #0BCD65 -5.47%, rgba(11, 205, 101, 0) 142.2%);
+ border-radius: 33px;
+ display: block;
+ /* left:auto; */
+}
+.rounded-border-1 {
+ width: 180px;
+ height: 40px;
+ background: linear-gradient(278.47deg, #0BCD65 -5.47%, rgba(11, 205, 101, 0) 142.2%);
+ border-radius: 33px;
+ display: block;
+ /* left:auto; */
+}
+
+
+.h1-text {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    padding-top: 8px;
+  }
+.h2-text {
+font-family: 'Quicksand', sans-serif;
+font-weight: bold;
+font-size: 38px;
+margin-bottom: 15px;
+}
+.h3-text {
+font-family: 'Quicksand', sans-serif;
+font-weight: bold;
+font-size: 32px;
+margin-bottom: 15px;
+}
+.h4-text {
+font-family: 'Quicksand', sans-serif;
+font-weight: normal;
+font-size: 28px;
+margin-bottom: 15px;
+}
+.h5-text {
+font-family: 'Quicksand', sans-serif;
+font-weight: normal;
+font-size: 24px;
+margin-bottom: 15px;
+}
+.h6-text {
+font-family: 'Quicksand', sans-serif;
+font-weight: normal;
+font-size: 18px;
+margin-bottom: 15px;
+}
+.p-text {
+font-size: 16px;
+font-weight: normal;
+color: #292929;
+}
+.p-text-bold {
+font-size: 16px;
+font-weight: bold;
+color: #292929;
+}
+.p-text-white {
+font-size: 16px;
+font-weight: bold;
+color: #fff;
+}
+
+
+
 .text-embohparah {
     padding: 0px;
     margin: 0px;

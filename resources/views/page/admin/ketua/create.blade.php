@@ -7,7 +7,7 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Tambah link</h1>
+    <h1 class="h3 mb-0 text-gray-800">Tambah link ketua</h1>
 </div>
 
 <!-- Content Row -->
@@ -17,12 +17,12 @@
 			<div class="card full-height">
 				<div class="card-header">
 					<div class="card-head-row">
-						<div class="card-title">Tambah links</div>
-						<a href="{{ route('links.index') }}" class="btn btn-primary btn-sm ml-auto">Back</a>
+						<div class="card-title">Tambah link ketua</div>
+						<a href="{{ route('ketua.index') }}" class="btn btn-primary btn-sm ml-auto">Back</a>
 					</div>
 				</div>
 			<div class="card-body">
-				<form action="{{ route('links.store') }}" method="POST" enctype="multipart/form-data">
+				<form action="{{ route('ketua.store') }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<label for="judul">Link Placeholder</label>
