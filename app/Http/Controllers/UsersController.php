@@ -93,6 +93,12 @@ class UsersController extends Controller
                 'email' => $request->email,
                 'roles' => $request->roles
             ]);
+        } elseif(empty($request->name) && empty($request->roles)) {
+            $crypt = bcrypt($request->password);
+            $update = $users->update([
+                'email' => $request->email,
+                'password' => $crypt
+            ]);
         } else {
             $crypt = bcrypt($request->password);
             $update = $users->update([

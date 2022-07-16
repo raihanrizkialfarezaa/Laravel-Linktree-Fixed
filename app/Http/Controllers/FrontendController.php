@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Link;
+use App\Models\User;
 use App\Models\Ketua;
 use App\Models\Office;
 use App\Models\Category;
@@ -96,5 +97,12 @@ class FrontendController extends Controller
             return redirect('/');
         }
         
+    }
+
+    public function edituser() {
+        $id = Auth::id();
+        $users = User::findOrFail($id);
+
+        return view('page.users.edit', compact('users'));
     }
 }

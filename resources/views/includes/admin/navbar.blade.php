@@ -25,6 +25,7 @@
                     @csrf
                     <button class="btn btn-primary" type="submit">Log Out</button>
                 </form>
+                <a href="{{ route('edit-user') }}" class="btn btn-primary mt-2">Edit Profile</a>
             </div>
         </li>
 
