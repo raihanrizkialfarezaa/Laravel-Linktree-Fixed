@@ -17,7 +17,7 @@
   <body>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 500px; margin-top: -20px">
+            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 800px; margin-top: -20px">
                 @auth
                     <div class="seperti-itu text-center">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -29,9 +29,6 @@
                         </form>
                         <form action="{{ route('link-kantor') }}" class="d-inline">
                             <button class="btn btn-primary">Office Links</button>
-                        </form>
-                        <form action="{{ route('link-ketua') }}" class="d-inline">
-                            <button class="btn btn-primary">Ketua Links</button>
                         </form>
                     </div>
                 @else
@@ -52,9 +49,6 @@
                         </form>
                         <form action="{{ route('link-kantor') }}" class="d-inline">
                             <button class="btn btn-primary">Office Links</button>
-                        </form>
-                        <form action="{{ route('link-ketua') }}" class="d-inline">
-                            <button class="btn btn-primary">Ketua Links</button>
                         </form>
                     </div>
                 @else
@@ -179,7 +173,7 @@
                         <div class="text pt-4 pb-2">
                             <h1 class="text-h1 text-center">{{ $cat->name }}</h1>
                         </div>
-                        @foreach ($cat->links as $link)
+                        @foreach ($cat->ketuas as $link)
                             @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
                                 <a href="{{ $link->link }}" class="luweh-emboh emboh">
                                     <p class="text-emboh text-embohparah">{{ $link->link }}</p>

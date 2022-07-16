@@ -17,7 +17,7 @@
   <body>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 800px; margin-top: -20px">
+            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 500px; margin-top: -20px">
                 @auth
                     <div class="seperti-itu text-center">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -29,6 +29,9 @@
                         </form>
                         <form action="{{ route('link-user') }}" class="d-inline">
                             <button class="btn btn-primary">My Links</button>
+                        </form>
+                        <form action="{{ route('link-ketua') }}" class="d-inline">
+                            <button class="btn btn-primary">Ketua Links</button>
                         </form>
                     </div>
                 @else
@@ -37,18 +40,21 @@
                     </div>
                 @endauth
             </div>
-            <div class="d-lg-none" style="margin-top: -20px">
+            <div class="d-lg-none" style="margin-top: -20px; margin-left: -10px">
                 @auth
                     <div class="seperti-itu text-center">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
                             @csrf
-                            <button class="btn btn-danger">LogOut</button>
+                            <button class="btn btn-danger mt-3">LogOut</button>
                         </form>
                         <form action="{{ route('links.index') }}" class="d-inline">
-                            <button class="btn btn-primary">Manage Links</button>
+                            <button class="btn btn-primary mt-3">Manage Links</button>
                         </form>
                         <form action="{{ route('link-user') }}" class="d-inline">
-                            <button class="btn btn-primary">My Links</button>
+                            <button class="btn btn-primary mt-3">My Links</button>
+                        </form>
+                        <form action="{{ route('link-ketua') }}" class="d-inline">
+                            <button class="btn btn-primary mt-3">Ketua Links</button>
                         </form>
                     </div>
                 @else

@@ -85,6 +85,16 @@ class FrontendController extends Controller
                 ->orWhere('link', 'LIKE', 'http://%');
         })
         ->get();
-        return view('page.users.office', compact('office', 'offices'));
+        $category = Category::all();
+        return view('page.users.office', compact('office', 'offices', 'category'));
+    }
+    public function ketualink() {
+        if (Auth::user()->roles == 'KETUA') {
+            $category = Category::all();
+            return view('page.users.ketua', compact('category'));
+        } else {
+            return redirect('/');
+        }
+        
     }
 }
