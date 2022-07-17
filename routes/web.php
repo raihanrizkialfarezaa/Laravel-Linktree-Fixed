@@ -31,6 +31,7 @@ Route::get('/admin', [DashboardController::class, 'index'])->name ('dashboard')-
 Route::get('/mylink', [FrontendController::class, 'index'])->name('link-user')->middleware('auth');
 Route::get('/pageketua', [FrontendController::class, 'ketualink'])->name('link-ketua')->middleware('auth');
 Route::get('/edit-profile', [FrontendController::class, 'edituser'])->name('edit-user')->middleware('auth');
+Route::put('/editprofile/{id}', [UsersController::class, 'updateuser'])->middleware('auth')->name('updateuser');
 Route::get('/', [FrontendController::class, 'officelinks'])->name('link-kantor');
 Route::resource('links', LinksController::class)->middleware('auth');
 Route::resource('ketua', KetuaController::class)->middleware('admin');

@@ -18,14 +18,26 @@
 				<div class="card-header">
 					<div class="card-head-row">
 						<div class="card-title">Edit users</div>
-						<a href="{{ route('users.index') }}" class="btn btn-primary btn-sm ml-auto">Back</a>
+						<a href="{{ route('link-user') }}" class="btn btn-primary btn-sm ml-auto">Back</a>
 					</div>
 				</div>
 				
 				<div class="card-body">
-					<form action="{{ route('users.update', $users->id) }}" method="POST" enctype="multipart/form-data">
+					<form action="{{ route('updateuser', $users->id) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
 						@csrf
+						@if ($message = Session::get('gagal'))
+							<div class="alert alert-danger">
+								<button type="button" class="close" data-dismiss="alert">×</button> 
+								<strong>{{ $message }}</strong>
+							</div>
+						@endif
+						<div hidden>
+							<input type="text" name="name" value="{{ $users->name }}">
+						</div>
+						<div hidden>
+							<input type="text" name="roles" value="{{ $users->roles }}">
+						</div>
                         <div class="form-group">
 							<label for="judul">Email</label>
 							<input type="text" value="{{ $users->email }}" class="form-control" name="email">

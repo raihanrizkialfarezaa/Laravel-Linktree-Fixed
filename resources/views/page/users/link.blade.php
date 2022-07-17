@@ -19,21 +19,36 @@
         <div class="row d-flex justify-content-center">
             <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 500px; margin-top: -20px">
                 @auth
-                    <div class="seperti-itu text-center">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button class="btn btn-danger">LogOut</button>
-                        </form>
-                        <form action="{{ route('links.index') }}" class="d-inline">
-                            <button class="btn btn-primary">Manage Links</button>
-                        </form>
-                        <form action="{{ route('link-kantor') }}" class="d-inline">
-                            <button class="btn btn-primary">Office Links</button>
-                        </form>
-                        <form action="{{ route('link-ketua') }}" class="d-inline">
-                            <button class="btn btn-primary">Ketua Links</button>
-                        </form>
-                    </div>
+                    @if (Auth::user()->roles == 'KETUA')
+                        <div class="seperti-itu text-center">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger">LogOut</button>
+                            </form>
+                            <form action="{{ route('links.index') }}" class="d-inline">
+                                <button class="btn btn-primary">Manage Links</button>
+                            </form>
+                            <form action="{{ route('link-kantor') }}" class="d-inline">
+                                <button class="btn btn-primary">Office Links</button>
+                            </form>
+                            <form action="{{ route('link-ketua') }}" class="d-inline">
+                                <button class="btn btn-primary">Ketua Links</button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="seperti-itu text-center">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger">LogOut</button>
+                            </form>
+                            <form action="{{ route('links.index') }}" class="d-inline">
+                                <button class="btn btn-primary">Manage Links</button>
+                            </form>
+                            <form action="{{ route('link-kantor') }}" class="d-inline">
+                                <button class="btn btn-primary">Office Links</button>
+                            </form>
+                        </div>
+                    @endif
                 @else
                     <div class="seperti-itu text-center">
                         <a href="{{ route('login') }}" class="btn btn-primary">Log In</a>
@@ -42,21 +57,36 @@
             </div>
             <div class="d-lg-none" style="margin-top: -20px">
                 @auth
-                    <div class="seperti-itu text-center">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button class="btn btn-danger">LogOut</button>
-                        </form>
-                        <form action="{{ route('links.index') }}" class="d-inline">
-                            <button class="btn btn-primary">Manage Links</button>
-                        </form>
-                        <form action="{{ route('link-kantor') }}" class="d-inline">
-                            <button class="btn btn-primary">Office Links</button>
-                        </form>
-                        <form action="{{ route('link-ketua') }}" class="d-inline">
-                            <button class="btn btn-primary">Ketua Links</button>
-                        </form>
-                    </div>
+                    @if (Auth::user()->roles == 'KETUA')
+                        <div class="seperti-itu text-center">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger">LogOut</button>
+                            </form>
+                            <form action="{{ route('links.index') }}" class="d-inline">
+                                <button class="btn btn-primary">Manage Links</button>
+                            </form>
+                            <form action="{{ route('link-kantor') }}" class="d-inline">
+                                <button class="btn btn-primary">Office Links</button>
+                            </form>
+                            <form action="{{ route('link-ketua') }}" class="d-inline">
+                                <button class="btn btn-primary">Ketua Links</button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="seperti-itu text-center">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger">LogOut</button>
+                            </form>
+                            <form action="{{ route('links.index') }}" class="d-inline">
+                                <button class="btn btn-primary">Manage Links</button>
+                            </form>
+                            <form action="{{ route('link-kantor') }}" class="d-inline">
+                                <button class="btn btn-primary">Office Links</button>
+                            </form>
+                        </div>
+                    @endif
                 @else
                     <div class="seperti-itu text-center">
                         <a href="{{ route('login') }}" class="btn btn-primary">Log In</a>

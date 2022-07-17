@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -87,29 +88,56 @@ class UsersController extends Controller
     {
         $users = User::findOrFail($id);
         
-        if (empty($request->password)) {
+        $emailExists = User::where('email', $request->email)->first();
+
+        if ($emailExists != null) {
+            Session::flash('gagal','Email yang anda masukkan telah terdaftar!');
+		    return redirect()->route('edit-user');
+        } else {
+            if (empty($request->password)) {
+                $update = $users->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'roles' => $request->roles
+                ]);
+            } else {
+                $crypt = bcrypt($request->password);
+                $update = $users->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $crypt,
+                    'roles' => $request->roles,
+                ]);
+            }
+        }
+        return redirect()->route('users.index');
+    }
+    public function updateuser(Request $request, $id)
+    {
+        $users = User::findOrFail($id);
+        
+        $emailExists = User::where('email', $request->email)->first();
+
+        if ($emailExists != null) {
+            Session::flash('gagal','Email yang anda masukkan telah terdaftar!');
+		    return redirect()->route('edit-user');
+        } elseif($emailExists == null && empty($request->password)) {
             $update = $users->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'roles' => $request->roles
             ]);
-        } elseif(empty($request->name) && empty($request->roles)) {
-            $crypt = bcrypt($request->password);
-            $update = $users->update([
-                'email' => $request->email,
-                'password' => $crypt
-            ]);
+            return redirect()->route('link-user');
         } else {
             $crypt = bcrypt($request->password);
             $update = $users->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $crypt,
-                'roles' => $request->roles,
+                'roles' => $request->roles
             ]);
+            return redirect()->route('link-user');
         }
-        return redirect()->route('users.index');
-        
     }
 
     /**

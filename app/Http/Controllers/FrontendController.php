@@ -69,7 +69,8 @@ class FrontendController extends Controller
                                                 ->orWhere('link', 'LIKE', 'http://%');
                                         })
                              ->get();
-                return view('page.users.link', compact('links', 'link'));
+                $category = Category::all();
+                return view('page.users.link', compact('links', 'link', 'category'));
             }
             
             // dd($id);
