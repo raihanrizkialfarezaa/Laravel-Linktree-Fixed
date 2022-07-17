@@ -2,6 +2,25 @@
     font-family: 'Inter', sans-serif;
 }
 
+::-webkit-scrollbar {
+    --webkit-appearance: none;
+}
+::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+::-webkit-scrollbar-track { 
+    background-color: #fff; 
+    border-radius: 8px; 
+}
+
 body {
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
@@ -30,14 +49,17 @@ body {
 
 .luweh-emboh {
     margin: 0px;
-    border: 1px solid white;
     font-family: inherit;
     font-weight: inherit;
-    color: #000;
+    color: #fff;
+    background: rgba(23, 228, 255, 0.46);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.9px);
+    -webkit-backdrop-filter: blur(5.9px);
+    border: 1px solid rgba(23, 228, 255, 0.46);
     font-size: inherit;
     text-align: center;
     cursor: pointer;
-    background: #fff;
     text-decoration: none;
     display: flex;
     border-radius: 20px;
