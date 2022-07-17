@@ -102,8 +102,16 @@ body {
  /* left:auto; */
 }
 .rounded-border-1 {
- width: 180px;
- height: 40px;
+ width: 240px;
+ height: 60px;
+ background: linear-gradient(278.47deg, #0BCD65 -5.47%, rgba(11, 205, 101, 0) 142.2%);
+ border-radius: 33px;
+ display: block;
+ /* left:auto; */
+}
+.rounded-border-2 {
+ width: 240px;
+ height: 37px;
  background: linear-gradient(278.47deg, #0BCD65 -5.47%, rgba(11, 205, 101, 0) 142.2%);
  border-radius: 33px;
  display: block;

@@ -12,13 +12,19 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="icon" href="{{ asset('assets/image/programmer.png') }}">
 
-    <title>Hello, world!</title>
+    <title>Link Ketua</title>
   </head>
   <body>
+    <div class="d-lg-none">
+        <img src="{{ asset('assets/image/Logo BPS Baru 2.png') }}" class="d-block mx-auto" width="256" alt="">
+    </div>
+    <div class="d-sm-none d-md-none d-lg-block d-smi-none">
+        <img src="{{ asset('assets/image/Logo BPS Baru 2.png') }}" style="margin-left: 20px;" width="256" alt="">
+    </div>
     <div class="container mt-5">
-        <img src="{{ asset('assets/image/LOGO BPS BARU.png') }}" width="128" alt="">
         <div class="row d-flex justify-content-center">
-            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 800px; margin-top: -90px">
+            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 500px; margin-top: -130px">
+                <div class="" style="margin-top: -20px;"></div>
                 @auth
                     <div class="seperti-itu text-center">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -31,6 +37,9 @@
                         <form action="{{ route('link-kantor') }}" class="d-inline">
                             <button class="btn btn-primary">Office Links</button>
                         </form>
+                        <form action="{{ route('link-user') }}" class="d-inline">
+                            <button class="btn btn-primary">My Links</button>
+                        </form>
                     </div>
                 @else
                     <div class="seperti-itu text-center">
@@ -38,7 +47,7 @@
                     </div>
                 @endauth
             </div>
-            <div class="d-lg-none" style="margin-top: -90px">
+            <div class="d-lg-none" style="margin-top: -40px; margin-bottom: 70px">
                 @auth
                     <div class="seperti-itu text-center">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -51,6 +60,9 @@
                         <form action="{{ route('link-kantor') }}" class="d-inline">
                             <button class="btn btn-primary">Office Links</button>
                         </form>
+                        <form action="{{ route('link-user') }}" class="d-inline">
+                            <button class="btn btn-primary">My Links</button>
+                        </form>
                     </div>
                 @else
                     <div class="seperti-itu text-center">
@@ -58,20 +70,20 @@
                     </div>
                 @endauth
             </div>
-            <div class="col-md-12 mt-5">
-                <img src="{{ asset('assets/image/programmer.png') }}" width="100" height="100" class="image-bunder rounded-circle d-block mx-auto">
-                <div class="mt-5"></div>
-                <div class="mt-2"></div>
-                @auth
-                    <div class="rounded-border mx-auto">
-                        <h1 class="text-center h1-text">{{ Auth::user()->name }}</h1>
-                    </div>
-                    <div class="mt-4"></div>
-                    <div class="rounded-border-1 mx-auto">
-                        <h1 class="text-center h1-text">Sebagai : {{ Auth::user()->roles }}</h1>
-                    </div>
-                @endauth
-            </div>
+        </div>
+        <div class="col-md-12">
+            <img src="{{ asset('assets/image/programmer.png') }}" width="100" height="100" class="image-bunder rounded-circle d-block mx-auto">
+            <div class="mt-5"></div>
+            <div class="mt-2"></div>
+            @auth
+                <div class="rounded-border mx-auto">
+                    <h1 class="text-center h1-text">{{ Auth::user()->name }}</h1>
+                </div>
+                <div class="mt-4"></div>
+                <div class="rounded-border-1 mx-auto">
+                    <h1 class="text-center h1-text">Sebagai : KETUA SUPERVISI</h1>
+                </div>
+            @endauth
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">

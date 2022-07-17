@@ -12,74 +12,112 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="icon" href="{{ asset('assets/image/man.png') }}">
 
-    <title>Hello, world!</title>
+    <title>Link Office : All</title>
   </head>
   <body>
+    <div class="d-lg-none">
+        <img src="{{ asset('assets/image/Logo BPS Baru 2.png') }}" class="d-block mx-auto" width="256" alt="">
+    </div>
+    <div class="d-sm-none d-md-none d-lg-block d-smi-none">
+        <img src="{{ asset('assets/image/Logo BPS Baru 2.png') }}" style="margin-left: 20px;" width="256" alt="">
+    </div>
       <div class="container mt-5">
-        <img src="{{ asset('assets/image/LOGO BPS BARU.png') }}" width="128" alt="">
         <div class="row d-flex justify-content-center">
-            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 500px; margin-top: -90px">
+            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 500px; margin-top: -130px">
+                <div class="" style="margin-top: -20px;"></div>
                 @auth
-                    <div class="seperti-itu text-center">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button class="btn btn-danger">LogOut</button>
-                        </form>
-                        <form action="{{ route('links.index') }}" class="d-inline">
-                            <button class="btn btn-primary">Manage Links</button>
-                        </form>
-                        <form action="{{ route('link-user') }}" class="d-inline">
-                            <button class="btn btn-primary">My Links</button>
-                        </form>
-                        <form action="{{ route('link-ketua') }}" class="d-inline">
-                            <button class="btn btn-primary">Ketua Links</button>
-                        </form>
-                    </div>
+                    @if (Auth::user()->roles == 'KETUA')
+                        <div class="seperti-itu text-center">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger">LogOut</button>
+                            </form>
+                            <form action="{{ route('links.index') }}" class="d-inline">
+                                <button class="btn btn-primary">Manage Links</button>
+                            </form>
+                            <form action="{{ route('link-user') }}" class="d-inline">
+                                <button class="btn btn-primary">My Links</button>
+                            </form>
+                            <form action="{{ route('link-ketua') }}" class="d-inline">
+                                <button class="btn btn-primary">Ketua Links</button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="seperti-itu text-center">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger">LogOut</button>
+                            </form>
+                            <form action="{{ route('links.index') }}" class="d-inline">
+                                <button class="btn btn-primary">Manage Links</button>
+                            </form>
+                            <form action="{{ route('link-user') }}" class="d-inline">
+                                <button class="btn btn-primary">My Links</button>
+                            </form>
+                        </div>
+                    @endif
                 @else
                     <div class="seperti-itu text-center">
                         <a href="{{ route('login') }}" class="btn btn-primary">Log In</a>
                     </div>
                 @endauth
             </div>
-            <div class="d-lg-none" style="margin-top: -90px; margin-left: -10px">
+            <div class="d-lg-none" style="margin-top: -40px; margin-bottom: 70px">
                 @auth
-                    <div class="seperti-itu text-center">
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button class="btn btn-danger mt-3">LogOut</button>
-                        </form>
-                        <form action="{{ route('links.index') }}" class="d-inline">
-                            <button class="btn btn-primary mt-3">Manage Links</button>
-                        </form>
-                        <form action="{{ route('link-user') }}" class="d-inline">
-                            <button class="btn btn-primary mt-3">My Links</button>
-                        </form>
-                        <form action="{{ route('link-ketua') }}" class="d-inline">
-                            <button class="btn btn-primary mt-3">Ketua Links</button>
-                        </form>
-                    </div>
+                    @if (Auth::user()->roles == 'KETUA')
+                        <div class="seperti-itu text-center">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger">LogOut</button>
+                            </form>
+                            <form action="{{ route('links.index') }}" class="d-inline">
+                                <button class="btn btn-primary">Manage Links</button>
+                            </form>
+                            <form action="{{ route('link-user') }}" class="d-inline">
+                                <button class="btn btn-primary">My Links</button>
+                            </form>
+                            <form action="{{ route('link-ketua') }}" class="d-inline">
+                                <button class="btn btn-primary">Ketua Links</button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="seperti-itu text-center">
+                            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                @csrf
+                                <button class="btn btn-danger">LogOut</button>
+                            </form>
+                            <form action="{{ route('links.index') }}" class="d-inline">
+                                <button class="btn btn-primary">Manage Links</button>
+                            </form>
+                            <form action="{{ route('link-user') }}" class="d-inline">
+                                <button class="btn btn-primary">My Links</button>
+                            </form>
+                        </div>
+                    @endif
                 @else
                     <div class="seperti-itu text-center">
                         <a href="{{ route('login') }}" class="btn btn-primary">Log In</a>
                     </div>
                 @endauth
             </div>
-            <div class="col-md-12 mt-5">
-                <img src="{{ asset('assets/image/man.png') }}" width="100" height="100" class="image-bunder rounded-circle d-block mx-auto">
+            <div class="col-md-12">
+                <img src="{{ asset('assets/image/programmer.png') }}" width="100" height="100" class="image-bunder rounded-circle d-block mx-auto">
                 <div class="mt-5"></div>
                 <div class="mt-2"></div>
-                <div class="text">
-                    <h1 class="text-center text-h1">General Office Links</h1>
-                </div>
-                <div class="mt-5"></div>
                 @auth
                     <div class="rounded-border mx-auto">
                         <h1 class="text-center h1-text">{{ Auth::user()->name }}</h1>
                     </div>
                     <div class="mt-4"></div>
-                    <div class="rounded-border-1 mx-auto">
-                        <h1 class="text-center h1-text">Sebagai : {{ Auth::user()->roles }}</h1>
-                    </div>
+                    @if (Auth::user()->roles == 'KETUA')
+                        <div class="rounded-border-1 mx-auto">
+                            <h1 class="text-center h1-text">Sebagai : KETUA SUPERVISI</h1>
+                        </div>
+                    @else
+                        <div class="rounded-border-2 mx-auto">
+                            <h1 class="text-center h1-text">Sebagai : {{ Auth::user()->roles }}</h1>
+                        </div>
+                    @endif
                 @endauth
             </div>
         </div>
@@ -88,30 +126,24 @@
                 <div class="mt-5"></div>
                 <div class="mt-2"></div>
                 <div class="seperti-itu">
-                    @forelse ($offices as $l)
-                        @if ($l->name != null)
-                            <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
-                                <p class="text-emboh text-embohparah">{{ $l->name }}</p>
-                            </a>
-                        @else
-                            <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
-                                <p class="text-emboh text-embohparah">{{ $l->link }}</p>
-                            </a>
-                        @endif
-                        @foreach ($office as $ls)
-                            @if ($ls->name != null)
-                                <a href="{{ $ls->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $ls->name }}</p>
+                    @forelse ($category as $cat)
+                        <div class="text pt-4 pb-2">
+                            <h1 class="text-h1 text-center">{{ $cat->name }}</h1>
+                        </div>
+                        @foreach ($cat->offices as $link)
+                            @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
+                                <a href="{{ $link->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $link->link }}</p>
                                 </a>
                             @else
-                                <a href="{{ $ls->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $ls->link }}</p>
+                                <a href="https://{{ $link->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $link->link }}</p>
                                 </a>
                             @endif
                         @endforeach
                     @empty
                         <a class="luweh-emboh emboh">
-                            <p class="text-emboh text-embohparah">Belum tersedia link general</p>
+                            <p class="text-emboh text-embohparah">User belum memiliki link</p>
                         </a>
                     @endforelse
                 </div>

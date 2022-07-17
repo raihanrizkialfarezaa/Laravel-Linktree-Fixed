@@ -8,6 +8,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">User</h1>
+    <a href="{{ route('link-kantor') }}" class="btn btn-primary">Go To Home</a>
     <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah Data</a>
 </div>
 
@@ -25,7 +26,11 @@
                 <tr>
                     <th>{{ $row->email }}</th>
                     <th>{{ $row->name }}</th>
+                    @if ($row->roles == 'KETUA')
+                        <th>KETUA SUPERVISI</th>
+                    @else
                     <th>{{ $row->roles }}</th>
+                    @endif
                     <th class="text-center">
                         <form action="{{ route('users.edit', $row->id) }}" class="d-inline">
                             @method('PUT')

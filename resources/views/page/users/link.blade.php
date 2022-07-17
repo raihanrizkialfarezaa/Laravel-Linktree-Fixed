@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="icon" href="{{ asset('assets/image/programmer.png') }}">
 
-    <title>Hello, world!</title>
+    <title>MyLink App</title>
   </head>
   <body>
     <div class="d-lg-none">
@@ -23,7 +23,7 @@
     </div>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 800px; margin-top: -130px">
+            <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 500px; margin-top: -130px">
                 <div class="" style="margin-top: -20px;"></div>
                 @auth
                     @if (Auth::user()->roles == 'KETUA')
@@ -109,9 +109,15 @@
                         <h1 class="text-center h1-text">{{ Auth::user()->name }}</h1>
                     </div>
                     <div class="mt-4"></div>
-                    <div class="rounded-border-1 mx-auto">
-                        <h1 class="text-center h1-text">Sebagai : {{ Auth::user()->roles }}</h1>
-                    </div>
+                    @if (Auth::user()->roles == 'KETUA')
+                        <div class="rounded-border-1 mx-auto">
+                            <h1 class="text-center h1-text">Sebagai : KETUA SUPERVISI</h1>
+                        </div>
+                    @else
+                        <div class="rounded-border-2 mx-auto">
+                            <h1 class="text-center h1-text">Sebagai : {{ Auth::user()->roles }}</h1>
+                        </div>
+                    @endif
                 @endauth
             </div>
         </div>
