@@ -14,10 +14,22 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::user()->roles == 'ADMIN') {
-            $user = User::all();
+            if($request->filled('search')){
+                $user = User::where('name', 'LIKE', '%' . $request->search . '%')
+                             ->orWhere('roles', 'LIKE', '%' . $request->search . '%')
+                             ->orWhere('email', 'LIKE', '%' . $request->search . '%')
+                             ->get();
+            }else{
+                if ($request->filled('showAll')) {
+                    $user = User::all();
+                } else {
+                    $user = User::paginate(10);
+                }
+                
+            }
             return view('page.admin.users.index', compact('user'));
         } else {
             return redirect('/linkuser');
@@ -118,26 +130,47 @@ class UsersController extends Controller
         
         $emailExists = User::where('email', $request->email)->first();
 
-        if ($emailExists != null) {
-            Session::flash('gagal','Email yang anda masukkan telah terdaftar!');
-		    return redirect()->route('edit-user');
-        } elseif($emailExists == null && empty($request->password)) {
-            $update = $users->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'roles' => $request->roles
-            ]);
-            return redirect()->route('link-user');
+        if ($id != Auth::id()) {
+            if ($emailExist != null) {
+                Session::flash('gagal','Email yang anda masukkan telah terdaftar!');
+                return redirect()->route('edit-user');
+            } elseif($emailExist == null && empty($request->password)) {
+                $update = $users->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'roles' => $request->roles
+                ]);
+                return redirect()->route('link-user');
+            } else {
+                $crypt = bcrypt($request->password);
+                $update = $users->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $crypt,
+                    'roles' => $request->roles
+                ]);
+                return redirect()->route('link-user');
+            }
         } else {
-            $crypt = bcrypt($request->password);
-            $update = $users->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => $crypt,
-                'roles' => $request->roles
-            ]);
-            return redirect()->route('link-user');
+            if (empty($request->password)) {
+                $update = $users->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'roles' => $request->roles
+                ]);
+                return redirect()->route('link-user');
+            } else {
+                $crypt = bcrypt($request->password);
+                $update = $users->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $crypt,
+                    'roles' => $request->roles
+                ]);
+                return redirect()->route('link-user');
+            }
         }
+        
     }
 
     /**

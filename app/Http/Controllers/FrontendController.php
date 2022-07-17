@@ -70,6 +70,11 @@ class FrontendController extends Controller
                                         })
                              ->get();
                 $category = Category::all();
+                // dd($categories);
+                // foreach ($categories as $cat) {
+                //     $category = $cat->links->where('user_id', $id);
+                // }
+                // dd($category[0]->links->where('user_id', 5));
                 return view('page.users.link', compact('links', 'link', 'category'));
             }
             

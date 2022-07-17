@@ -7,6 +7,7 @@ use App\Models\Link;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LinksController extends Controller
 {
@@ -15,12 +16,26 @@ class LinksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $id = Auth::id();
+        DB::enableQueryLog();
         // $links = Link::findOrFail($id)->first();
         // dd($links->user->name);
-        $links = Link::where('user_id', $id)->get();
+        // $links = Link::where('user_id', $id)->get();
+        if($request->filled('search')){
+            $links = Link::where('user_id', $id)
+                         ->where('link', 'LIKE', '%' . $request->search . '%')
+                         ->get();
+            // dd(DB::getQueryLog());
+        }else{
+            if ($request->filled('showAll')) {
+                $links = Link::where('user_id', $id);
+            } else {
+                $links = Link::where('user_id', $id)->paginate(10);
+            }
+            
+        }
         return view('page.admin.links.index', compact('links'));
         
     }

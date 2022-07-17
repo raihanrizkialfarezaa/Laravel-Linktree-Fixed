@@ -13,9 +13,19 @@ class OfficeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $office = Office::all();
+        if($request->filled('search')){
+            $office = Office::where('link', 'LIKE', '%' . $request->search . '%')
+                             ->get();
+        }else{
+            if ($request->filled('showAll')) {
+                $office = Office::all();
+            } else {
+                $office = Office::paginate(10);
+            }
+            
+        }
         // dd($office[0]->category);
         return view('page.admin.office.index', compact('office'));
     }

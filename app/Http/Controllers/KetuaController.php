@@ -14,7 +14,7 @@ class KetuaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $id = Auth::id();
         // $links = Ketua::findOrFail($id)->first();
@@ -25,7 +25,17 @@ class KetuaController extends Controller
             //                 ->get('id')
             //                 ->toArray();
             // dd($user_id);
-            $ketua = Ketua::all();
+            if($request->filled('search')){
+                $ketua = Ketua::where('link', 'LIKE', '%' . $request->search . '%')
+                              ->get();
+            }else{
+                if ($request->filled('showAll')) {
+                    $ketua = Ketua::all();
+                } else {
+                    $ketua = Ketua::paginate(10);
+                }
+                
+            }
             return view('page.admin.ketua.index', compact('ketua'));
         } else {
             return redirect('/');

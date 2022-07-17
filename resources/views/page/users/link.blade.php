@@ -224,7 +224,7 @@
                         <div class="text pt-4 pb-2">
                             <h1 class="text-h1 text-center">{{ $cat->name }}</h1>
                         </div>
-                        @foreach ($cat->links as $link)
+                        @foreach ($cat->links->where('user_id', Auth::id()) as $link)
                             @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
                                 <a href="{{ $link->link }}" class="luweh-emboh emboh">
                                     <p class="text-emboh text-embohparah">{{ $link->link }}</p>

@@ -32,8 +32,9 @@
 								<strong>{{ $message }}</strong>
 							</div>
 						@endif
-						<div hidden>
-							<input type="text" name="name" value="{{ $users->name }}">
+						<div class="form-group">
+							<label for="">Name</label>
+							<input type="text" class="form-control" name="name" value="{{ $users->name }}">
 						</div>
 						<div hidden>
 							<input type="text" name="roles" value="{{ $users->roles }}">
