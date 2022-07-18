@@ -19,8 +19,10 @@ class FrontendController extends Controller
         DB::enableQueryLog();
             if (Auth::user()->roles == 'KETUA') {
                 $link = Link::where('user_id', $id)
+                             ->where('category_user_id', null)
                              ->get();
                 $category = CategoryUser::where('user_id', Auth::id())->get();
+                // dd($link);
                 // foreach ($category as $cat) {
                 //     dd($category);
                 // }
@@ -28,6 +30,7 @@ class FrontendController extends Controller
                 return view('page.users.link', compact( 'link', 'category'));
             } else {
                 $link = Link::where('user_id', Auth::id())
+                             ->where('category_user_id' == null)
                              ->get();
                 $category = CategoryUser::where('user_id', Auth::id())->get();
                 // dd($categories);
@@ -35,7 +38,7 @@ class FrontendController extends Controller
                 //     $category = $cat->links->where('user_id', $id);
                 // }
                 // dd($category[0]->links->where('user_id', 5));
-                return view('page.users.link', compact('links', 'link', 'category'));
+                return view('page.users.link', compact('link', 'category'));
             }
             
             // dd($id);

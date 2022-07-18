@@ -109,7 +109,7 @@ class LinksController extends Controller
         $update = $links->update([
             'name' => $request->name,
             'link' => $request->link,
-            'categoryuser_id' => $request->categoryuser_id
+            'category_user_id' => $request->category_user_id
         ]);
 
         if ($update) {
