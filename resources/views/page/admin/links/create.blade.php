@@ -33,14 +33,6 @@
 						<input type="text" class="form-control" name="link">
 					</div>
 					<div class="form-group">
-						<label for="judul">Category</label>
-						<select class="form-control" name="category_id" id="">
-							@foreach ($category as $cat)
-								<option value="{{ $cat->id }}">{{ $cat->name }}</option>
-							@endforeach
-						</select>
-					</div>
-					<div class="form-group">
 						<button class="btn btn-primary">Save</button>
 					</div>
 				</form>

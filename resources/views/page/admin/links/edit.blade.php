@@ -35,18 +35,6 @@
 							<input type="text" value="{{ $links->link }}" class="form-control" name="link">
 						</div>
 						<div class="form-group">
-							<label for="judul">Category</label>
-							<select class="form-control" name="category_id" id="">
-								@foreach ($category as $cat)
-								@if (old('category_id', $links->category_id) == $cat->category_id)
-									<option value="{{ $cat->id }}" selected>{{ $cat->name }}</option>
-								@else
-									<option value="{{ $cat->id }}">{{ $cat->name }}</option>
-								@endif
-								@endforeach
-							</select>
-						</div>
-						<div class="form-group">
                             <button class="btn btn-primary btn-sm" type="submit">Save</button>
                         </div>
 					</form>

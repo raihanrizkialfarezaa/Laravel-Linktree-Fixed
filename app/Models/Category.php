@@ -13,11 +13,6 @@ class Category extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-
-    public function links()
-    {
-        return $this->hasMany(Link::class);
-    }
     
     public function ketuas()
     {

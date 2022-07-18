@@ -141,86 +141,33 @@
                             <p class="text-emboh text-embohparah">user ini belum memiliki link</p>
                         </button>
                     @endforelse --}}
-                    {{-- @if (Auth::user()->roles == 'KETUA')
-                        @forelse ($links as $l)
-                            <b>{{ $l->category->name }}</b>
-                            @if ($l->name != null)
-                                <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $l->name }}</p>
-                                </a>
-                            @else
-                                <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $l->link }}</p>
-                                </a>
-                            @endif
-                            @foreach ($link as $ls)
-                            <b>{{ $link->category->name }}</b>
-                                @if ($ls->name != null)
-                                    <a href="{{ $ls->link }}" class="luweh-emboh emboh">
-                                        <p class="text-emboh text-embohparah">{{ $ls->name }}</p>
-                                    </a>
-                                @else
-                                    <a href="{{ $ls->link }}" class="luweh-emboh emboh">
-                                        <p class="text-emboh text-embohparah">{{ $ls->link }}</p>
-                                    </a>
-                                @endif
-                            @endforeach
-                        @empty
-                            <a class="luweh-emboh emboh">
-                                <p class="text-emboh text-embohparah">User belum memiliki link</p>
+                    @forelse ($links as $l)
+                        @if ($l->name != null)
+                            <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
+                                <p class="text-emboh text-embohparah">{{ $l->name }}</p>
                             </a>
-                        @endforelse
-                        @foreach ($ketua as $k)
-                            @if ($k->name != null)
-                                <a href="{{ $k->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $k->name }}</p>
+                        @else
+                            <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
+                                <p class="text-emboh text-embohparah">{{ $l->link }}</p>
+                            </a>
+                        @endif
+                        @foreach ($link as $ls)
+                            @if ($ls->name != null)
+                                <a href="{{ $ls->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $ls->name }}</p>
                                 </a>
                             @else
-                                <a href="{{ $k->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $k->link }}</p>
+                                <a href="{{ $ls->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $ls->link }}</p>
                                 </a>
                             @endif
-                            @foreach ($ketuas as $ks)
-                                @if ($ks->name != null)
-                                    <a href="https://{{ $ks->link }}" class="luweh-emboh emboh">
-                                        <p class="text-emboh text-embohparah">{{ $ks->name }}</p>
-                                    </a>
-                                @else
-                                    <a href="https://{{ $ks->link }}" class="luweh-emboh emboh">
-                                        <p class="text-emboh text-embohparah">{{ $ks->link }}</p>
-                                    </a>
-                                @endif
-                            @endforeach
                         @endforeach
-                    @else
-                        @forelse ($links as $l)
-                            @if ($l->name != null)
-                                <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $l->name }}</p>
-                                </a>
-                            @else
-                                <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $l->link }}</p>
-                                </a>
-                            @endif
-                            @foreach ($link as $ls)
-                                @if ($ls->name != null)
-                                    <a href="{{ $ls->link }}" class="luweh-emboh emboh">
-                                        <p class="text-emboh text-embohparah">{{ $ls->name }}</p>
-                                    </a>
-                                @else
-                                    <a href="{{ $ls->link }}" class="luweh-emboh emboh">
-                                        <p class="text-emboh text-embohparah">{{ $ls->link }}</p>
-                                    </a>
-                                @endif
-                            @endforeach
                     @empty
                         <a class="luweh-emboh emboh">
                             <p class="text-emboh text-embohparah">User belum memiliki link</p>
                         </a>
                     @endforelse
-                    @endif --}}
-                    @forelse ($category as $cat)
+                    {{-- @forelse ($category as $cat)
                         <div class="text pt-4 pb-2">
                             <h1 class="text-h1 text-center">{{ $cat->name }}</h1>
                         </div>
@@ -239,7 +186,7 @@
                         <a class="luweh-emboh emboh">
                             <p class="text-emboh text-embohparah">User belum memiliki link</p>
                         </a>
-                    @endforelse
+                    @endforelse --}}
                     {{-- @if (Auth::user()->roles == 'KETUA')
                         @forelse ($category as $cat)
                             @foreach ($link as $l)

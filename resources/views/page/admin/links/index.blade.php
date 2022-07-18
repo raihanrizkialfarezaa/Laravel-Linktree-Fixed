@@ -32,14 +32,12 @@
             <table class="table table-bordered">
                 <tr>
                     <th>User</th>
-                    <th>Category</th>
                     <th>Links</th>
                     <th class="text-center">Aksi</th>
                 </tr>
                 @forelse ($links as $row)
                     <tr>
                         <th>{{ $row->user->name }}</th>
-                        <th>{{ $row->category->name }}</th>
                         <th>{{ $row->link }}</th>
                         <th class="text-center">
                             <form action="{{ route('links.edit', $row->id) }}" class="d-inline">

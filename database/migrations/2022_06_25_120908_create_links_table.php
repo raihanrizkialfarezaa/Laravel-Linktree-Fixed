@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('category_id');
             $table->string('link');
             $table->string('name')->nullable();
             $table->timestamps();
