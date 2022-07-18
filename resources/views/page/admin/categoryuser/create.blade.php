@@ -17,28 +17,16 @@
 			<div class="card full-height">
 				<div class="card-header">
 					<div class="card-head-row">
-						<div class="card-title">Tambah links</div>
-						<a href="{{ route('links.index') }}" class="btn btn-primary btn-sm ml-auto">Back</a>
+						<div class="card-title">Tambah category</div>
+						<a href="{{ route('categoryuser.index') }}" class="btn btn-primary btn-sm ml-auto">Back</a>
 					</div>
 				</div>
 			<div class="card-body">
-				<form action="{{ route('links.store') }}" method="POST" enctype="multipart/form-data">
+				<form action="{{ route('categoryuser.store') }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
-						<label for="judul">Link Placeholder</label>
+						<label for="judul">Category Name</label>
 						<input type="text" class="form-control" name="name">
-					</div>
-					<div class="form-group">
-						<label for="judul">Link</label>
-						<input type="text" class="form-control" name="link">
-					</div>
-					<div class="form-group">
-						<label for="judul">Category</label>
-						<select class="form-control" name="category_user_id" id="">
-							@foreach ($category as $cat)
-								<option value="{{ $cat->id }}">{{ $cat->name }}</option>
-							@endforeach
-						</select>
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary">Save</button>

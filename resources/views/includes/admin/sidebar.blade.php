@@ -49,6 +49,11 @@
                 <i class="fas fa-fw fa-people-arrows"></i>
                 <span>Category</span></a>
         </li>
+        <li class="nav-item {{ Request::is('categoryuser') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('categoryuser.index') }}">
+                <i class="fas fa-fw fa-people-arrows"></i>
+                <span>Category User</span></a>
+        </li>
     @else
     <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('dashboard') }}">
@@ -59,6 +64,11 @@
         <a class="nav-link" href="{{ route('links.index') }}">
             <i class="fas fa-fw fa-people-arrows"></i>
             <span>Links</span></a>
+    </li>
+    <li class="nav-item {{ Request::is('categoryuser') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('categoryuser.index') }}">
+            <i class="fas fa-fw fa-people-arrows"></i>
+            <span>Category User</span></a>
     </li>
     @endif
 

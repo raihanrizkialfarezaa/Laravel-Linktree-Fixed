@@ -32,12 +32,18 @@
             <table class="table table-bordered">
                 <tr>
                     <th>User</th>
+                    <th>Category</th>
                     <th>Links</th>
                     <th class="text-center">Aksi</th>
                 </tr>
                 @forelse ($links as $row)
                     <tr>
                         <th>{{ $row->user->name }}</th>
+                        @if ($row->category_user_id == null)
+                            <th>Belum Menambahkan Kategori</th>
+                        @else
+                            <th>{{ $row->category->name }}</th>
+                        @endif
                         <th>{{ $row->link }}</th>
                         <th class="text-center">
                             <form action="{{ route('links.edit', $row->id) }}" class="d-inline">

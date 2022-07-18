@@ -2,24 +2,27 @@
 
 namespace App\Models;
 
+use App\Models\Link;
 use App\Models\User;
-use App\Models\CategoryUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Link extends Model
+class CategoryUser extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
+
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
     
-    public function category()
+    public function links()
     {
-        return $this->belongsTo(CategoryUser::class, 'category_user_id', 'id');
+        return $this->hasMany(Link::class);
     }
+
+    
 }

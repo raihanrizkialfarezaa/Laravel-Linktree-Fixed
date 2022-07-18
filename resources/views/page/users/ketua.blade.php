@@ -185,10 +185,12 @@
                     @endforelse
                     @endif --}}
                     @forelse ($category as $cat)
-                        @if ($cat->offices->count() != null)
-                            <div class="text pt-4 pb-2">
-                                <h1 class="text-h1 text-center">{{ $cat->name }}</h1>
-                            </div>
+                        @if ($cat->ketuas->count() != null)
+                            @if ($cat->ketuas->count() != null)
+                                <div class="text pt-4 pb-2">
+                                    <h1 class="text-h1 text-center">{{ $cat->name }}</h1>
+                                </div>
+                            @endif
                         @endif
                         @foreach ($cat->ketuas as $link)
                             @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)

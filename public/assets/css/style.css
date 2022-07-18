@@ -76,7 +76,42 @@ body {
     vertical-align: middle;
 }
 
+.luweh-emboh-1 {
+    margin: 0px;
+    font-family: inherit;
+    font-weight: inherit;
+    color: #fff;
+    background: rgba(255, 0, 0, 0.59);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.2px);
+    -webkit-backdrop-filter: blur(9.2px);
+    border: 1px solid rgba(255, 0, 0, 0.46);
+    font-size: inherit;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    border-radius: 20px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: auto;
+    position: relative;
+    padding: 16px 0;
+    width: 100%;
+    appearance: none;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
 .luweh-emboh:hover {
+    background: none;
+    color: #fff;
+    text-decoration: none;
+}
+.luweh-emboh-1:hover {
     background: none;
     color: #fff;
     text-decoration: none;

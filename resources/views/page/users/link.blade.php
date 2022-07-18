@@ -141,7 +141,7 @@
                             <p class="text-emboh text-embohparah">user ini belum memiliki link</p>
                         </button>
                     @endforelse --}}
-                    @forelse ($links as $l)
+                    {{-- @forelse ($links as $l)
                         @if ($l->name != null)
                             <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
                                 <p class="text-emboh text-embohparah">{{ $l->name }}</p>
@@ -166,27 +166,69 @@
                         <a class="luweh-emboh emboh">
                             <p class="text-emboh text-embohparah">User belum memiliki link</p>
                         </a>
-                    @endforelse
-                    {{-- @forelse ($category as $cat)
-                        <div class="text pt-4 pb-2">
-                            <h1 class="text-h1 text-center">{{ $cat->name }}</h1>
-                        </div>
+                    @endforelse --}}
+                    @forelse ($category as $cat)
+                        @if ($cat->links->count() != null)
+                            <div class="text pt-4 pb-2">
+                                <h1 class="text-h1 text-center">{{ $cat->name }}</h1>
+                            </div>
+                        @endif
                         @foreach ($cat->links->where('user_id', Auth::id()) as $link)
-                            @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
-                                <a href="{{ $link->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $link->link }}</p>
-                                </a>
+                            @if ($link->name != null)
+                                @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
+                                    <a href="{{ $link->link }}" class="luweh-emboh emboh">
+                                        <p class="text-emboh text-embohparah">{{ $link->name }}</p>
+                                    </a>
+                                @else
+                                    <a href="https://{{ $link->link }}" class="luweh-emboh emboh">
+                                        <p class="text-emboh text-embohparah">{{ $link->name }}</p>
+                                    </a>
+                                @endif
                             @else
-                                <a href="https://{{ $link->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $link->link }}</p>
-                                </a>
+                                @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
+                                    <a href="{{ $link->link }}" class="luweh-emboh emboh">
+                                        <p class="text-emboh text-embohparah">{{ $link->link }}</p>
+                                    </a>
+                                @else
+                                    <a href="https://{{ $link->link }}" class="luweh-emboh emboh">
+                                        <p class="text-emboh text-embohparah">{{ $link->link }}</p>
+                                    </a>
+                                @endif
                             @endif
                         @endforeach
+                    @empty
+                        <a class="luweh-emboh-1 emboh">
+                            <p class="text-emboh text-embohparah">User belum memiliki link yang berkategori</p>
+                        </a>
+                    @endforelse
+                    <h1 class="h1-text text-center mt-5">Link Tanpa Kategori</h1>
+                    @forelse ($link as $l)
+                        @if ($l->name != null)
+                            @if (strpos($l->link, 'http') === 0 || strpos($l->link, 'https') === 0)
+                                <a href="{{ $l->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $l->name }}</p>
+                                </a>
+                            @else
+                                <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $l->name }}</p>
+                                </a>
+                            @endif
+                        @else
+                            @if (strpos($l->link, 'http') === 0 || strpos($l->link, 'https') === 0)
+                                <a href="{{ $l->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $l->link }}</p>
+                                </a>
+                            @else
+                                <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
+                                    <p class="text-emboh text-embohparah">{{ $l->link }}</p>
+                                </a>
+                            @endif
+                        @endif
                     @empty
                         <a class="luweh-emboh emboh">
                             <p class="text-emboh text-embohparah">User belum memiliki link</p>
                         </a>
-                    @endforelse --}}
+                    @endforelse
                     {{-- @if (Auth::user()->roles == 'KETUA')
                         @forelse ($category as $cat)
                             @foreach ($link as $l)

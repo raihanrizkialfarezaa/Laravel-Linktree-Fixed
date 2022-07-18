@@ -8,6 +8,7 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,4 @@ Route::resource('ketua', KetuaController::class)->middleware('admin');
 Route::resource('users', UsersController::class)->middleware('admin');
 Route::resource('category', CategoryController::class)->middleware('admin');
 Route::resource('office', OfficeController::class)->middleware('admin');
+Route::resource('categoryuser', CategoryUserController::class)->middleware('auth');

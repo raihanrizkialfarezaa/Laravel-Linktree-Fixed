@@ -6,6 +6,7 @@ use Auth;
 use App\Models\Link;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\CategoryUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,7 +49,7 @@ class LinksController extends Controller
     public function create()
     {
         // $user = User::where('roles', 'ADMIN')->orWhere('roles', 'KETUA')->get();
-        $category = Category::all();
+        $category = CategoryUser::where('user_id', Auth::id())->get();
         return view('page.admin.links.create', compact('category'));
     }
 
@@ -89,7 +90,7 @@ class LinksController extends Controller
     public function edit($id)
     {
         $links = Link::findOrFail($id);
-        $category = Category::all();
+        $category = CategoryUser::where('user_id', Auth::id())->get();
 
         return view('page.admin.links.edit', compact('links', 'category'));
     }
@@ -107,7 +108,8 @@ class LinksController extends Controller
         
         $update = $links->update([
             'name' => $request->name,
-            'link' => $request->link
+            'link' => $request->link,
+            'categoryuser_id' => $request->categoryuser_id
         ]);
 
         if ($update) {
