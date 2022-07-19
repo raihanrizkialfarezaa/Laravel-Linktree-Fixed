@@ -27,7 +27,7 @@
                 aria-labelledby="userDropdown">
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button class="btn btn-primary" type="submit">Log Out</button>
+                    <button class="btn btn-danger" type="submit">Log Out</button>
                 </form>
                 <a href="{{ route('edit-user') }}" class="btn btn-primary mt-2">Edit Profile</a>
             </div>
