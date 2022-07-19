@@ -26,7 +26,7 @@
             <div class="d-sm-none d-md-none d-lg-block d-smi-none" style="margin-left: 500px; margin-top: -130px">
                 <div class="" style="margin-top: -20px;"></div>
                 @auth
-                    @if (Auth::user()->roles == 'KETUA')
+                    @if (Auth::user()->roles == 'KETUA' || Auth::user()->roles == 'ADMIN')
                         <div class="seperti-itu text-center">
                             <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                 @csrf
@@ -64,7 +64,7 @@
             </div>
             <div class="d-lg-none" style="margin-top: -40px; margin-bottom: 70px">
                 @auth
-                    @if (Auth::user()->roles == 'KETUA')
+                    @if (Auth::user()->roles == 'KETUA' ||Auth::user()->roles == 'ADMIN')
                         <div class="seperti-itu text-center">
                             <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                 @csrf

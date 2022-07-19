@@ -74,7 +74,7 @@ class FrontendController extends Controller
         return view('page.users.office', compact('office', 'offices', 'category'));
     }
     public function ketualink() {
-        if (Auth::user()->roles == 'KETUA') {
+        if (Auth::user()->roles == 'KETUA' || Auth::user()->roles == 'ADMIN') {
             $category = Category::all();
             return view('page.users.ketua', compact('category'));
         } else {
