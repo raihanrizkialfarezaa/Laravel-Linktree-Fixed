@@ -32,12 +32,18 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Category Name</th>
+                    <th>Placeholder</th>
                     <th>Links</th>
                     <th class="text-center">Aksi</th>
                 </tr>
                 @forelse ($office as $row)
                     <tr>
                         <th>{{ $row->category->name }}</th>
+                        @if ($row->name == null)
+                            <th>Belum ada placeholder</th>
+                        @else
+                            <th>{{ $row->name }}</th>
+                        @endif
                         <th>{{ $row->link }}</th>
                         <th class="text-center">
                             <form action="{{ route('office.edit', $row->id) }}" class="d-inline">

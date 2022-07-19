@@ -7,7 +7,7 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Category</h1>
+    <h1 class="h3 mb-0 text-gray-800">Category Link Office</h1>
     <a href="{{ route('link-kantor') }}" class="btn btn-primary">Go To Home</a>
     <a href="{{ route('category.create') }}" class="btn btn-primary">Tambah Data</a>
 </div>

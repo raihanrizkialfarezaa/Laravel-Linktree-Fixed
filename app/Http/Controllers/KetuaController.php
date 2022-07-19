@@ -27,6 +27,7 @@ class KetuaController extends Controller
             // dd($user_id);
             if($request->filled('search')){
                 $ketua = Ketua::where('link', 'LIKE', '%' . $request->search . '%')
+                              ->orWhere('name', 'LIKE', '%' . $request->search . '%')
                               ->get();
             }else{
                 if ($request->filled('showAll')) {
@@ -108,7 +109,8 @@ class KetuaController extends Controller
         
         $update = $ketua->update([
             'name' => $request->name,
-            'link' => $request->link
+            'link' => $request->link,
+            'category_id' => $request->category_id
         ]);
 
         if ($update) {

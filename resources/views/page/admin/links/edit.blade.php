@@ -38,7 +38,7 @@
 							<label for="judul">Category</label>
 							<select class="form-control" name="category_user_id" id="">
 								@foreach ($category as $cat)
-								@if (old('category_id', $links->categoryuser_id) == $cat->id)
+								@if (old('category_id', $links->category_user_id) == $cat->id)
 									<option value="{{ $cat->id }}" selected>{{ $cat->name }}</option>
 								@else
 									<option value="{{ $cat->id }}">{{ $cat->name }}</option>

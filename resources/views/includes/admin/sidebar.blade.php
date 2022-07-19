@@ -44,15 +44,15 @@
                 <i class="fas fa-fw fa-people-arrows"></i>
                 <span>Link Ketua</span></a>
         </li>
-        <li class="nav-item {{ Request::is('category*') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::is('category') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('category.index') }}">
                 <i class="fas fa-fw fa-people-arrows"></i>
-                <span>Category</span></a>
+                <span>Category Link Office</span></a>
         </li>
         <li class="nav-item {{ Request::is('categoryuser*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('categoryuser.index') }}">
                 <i class="fas fa-fw fa-people-arrows"></i>
-                <span>Category User</span></a>
+                <span>Category Link User</span></a>
         </li>
     @else
     <li class="nav-item {{ Request::is('admin*') ? 'active' : '' }}">
@@ -68,7 +68,7 @@
     <li class="nav-item {{ Request::is('categoryuser*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('categoryuser.index') }}">
             <i class="fas fa-fw fa-people-arrows"></i>
-            <span>Category User</span></a>
+            <span>Category Link User</span></a>
     </li>
     @endif
 

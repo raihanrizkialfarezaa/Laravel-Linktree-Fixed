@@ -196,39 +196,16 @@
                             @endif
                         @endforeach
                         @else
-                        <h1 class="h1-text text-center"></h1>
-                            @foreach ($link as $l)
-                                @if ($l->name != null)
-                                    @if (strpos($l->link, 'http') === 0 || strpos($l->link, 'https') === 0)
-                                        <a href="{{ $l->link }}" class="luweh-emboh emboh">
-                                            <p class="text-emboh text-embohparah">{{ $l->name }}</p>
-                                        </a>
-                                    @else
-                                        <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
-                                            <p class="text-emboh text-embohparah">{{ $l->name }}</p>
-                                        </a>
-                                    @endif
-                                @else
-                                    @if (strpos($l->link, 'http') === 0 || strpos($l->link, 'https') === 0)
-                                        <a href="{{ $l->link }}" class="luweh-emboh emboh">
-                                            <p class="text-emboh text-embohparah">{{ $l->link }}</p>
-                                        </a>
-                                    @else
-                                        <a href="https://{{ $l->link }}" class="luweh-emboh emboh">
-                                            <p class="text-emboh text-embohparah">{{ $l->link }}</p>
-                                        </a>
-                                    @endif
-                                @endif
-                            @endforeach
+                        
                         @endif
                     @empty
                         <a class="luweh-emboh-1 emboh">
                             <p class="text-emboh text-embohparah">User belum memiliki link yang berkategori</p>
                         </a>
                     @endforelse
-                    {{-- <h1 class="h1-text text-center mt-5">Link Tanpa Kategori</h1>
-                    @if ($link->count() > 0)
-                        @forelse ($link as $l)
+                    @if ($linkTotal > 0)
+                    <h1 class="h1-text text-center mt-5">Link Tanpa Kategori</h1>
+                        @foreach ($link as $l)
                             @if ($l->name != null)
                                 @if (strpos($l->link, 'http') === 0 || strpos($l->link, 'https') === 0)
                                     <a href="{{ $l->link }}" class="luweh-emboh emboh">
@@ -250,10 +227,8 @@
                                     </a>
                                 @endif
                             @endif
-                        @empty 
-                        ku juga, mencintaimu
-                        @endforelse
-                    @endif --}}
+                        @endforeach
+                    @endif
                     {{-- @if (Auth::user()->roles == 'KETUA')
                         @forelse ($category as $cat)
                             @foreach ($link as $l)

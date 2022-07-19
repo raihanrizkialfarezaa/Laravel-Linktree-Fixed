@@ -33,6 +33,7 @@
                 <tr>
                     <th>User</th>
                     <th>Category</th>
+                    <th>Placeholder</th>
                     <th>Links</th>
                     <th class="text-center">Aksi</th>
                 </tr>
@@ -43,6 +44,11 @@
                             <th>Belum Menambahkan Kategori</th>
                         @else
                             <th>{{ $row->category->name }}</th>
+                        @endif
+                        @if ($row->name == null)
+                            <th>Belum ada placeholder</th>
+                        @else
+                            <th>{{ $row->name }}</th>
                         @endif
                         <th>{{ $row->link }}</th>
                         <th class="text-center">

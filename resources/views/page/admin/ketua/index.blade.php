@@ -31,12 +31,18 @@
         @if ($ketua->count())
             <table class="table table-bordered">
                 <tr>
+                    <th>Placeholder</th>
                     <th>Links</th>
                     <th>Category</th>
                     <th class="text-center">Aksi</th>
                 </tr>
                 @forelse ($ketua as $row)
                     <tr>
+                        @if ($row->name == null)
+                            <th>Belum ada placeholder</th>
+                        @else
+                            <th>{{ $row->name }}</th>
+                        @endif
                         <th>{{ $row->link }}</th>
                         <th>{{ $row->category->name }}</th>
                         <th class="text-center">

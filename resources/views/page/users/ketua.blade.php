@@ -193,14 +193,26 @@
                             @endif
                         @endif
                         @foreach ($cat->ketuas as $link)
-                            @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
-                                <a href="{{ $link->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $link->link }}</p>
-                                </a>
+                            @if ($link->name != null)
+                                @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
+                                    <a href="{{ $link->link }}" class="luweh-emboh emboh">
+                                        <p class="text-emboh text-embohparah">{{ $link->name }}</p>
+                                    </a>
+                                @else
+                                    <a href="https://{{ $link->link }}" class="luweh-emboh emboh">
+                                        <p class="text-emboh text-embohparah">{{ $link->name }}</p>
+                                    </a>
+                                @endif
                             @else
-                                <a href="https://{{ $link->link }}" class="luweh-emboh emboh">
-                                    <p class="text-emboh text-embohparah">{{ $link->link }}</p>
-                                </a>
+                                @if (strpos($link->link, 'http') === 0 || strpos($link->link, 'https') === 0)
+                                    <a href="{{ $link->link }}" class="luweh-emboh emboh">
+                                        <p class="text-emboh text-embohparah">{{ $link->link }}</p>
+                                    </a>
+                                @else
+                                    <a href="https://{{ $link->link }}" class="luweh-emboh emboh">
+                                        <p class="text-emboh text-embohparah">{{ $link->link }}</p>
+                                    </a>
+                                @endif
                             @endif
                         @endforeach
                     @empty

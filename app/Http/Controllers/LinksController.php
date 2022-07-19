@@ -25,8 +25,12 @@ class LinksController extends Controller
         // dd($links->user->name);
         // $links = Link::where('user_id', $id)->get();
         if($request->filled('search')){
+            $search = $request->search;
             $links = Link::where('user_id', $id)
-                         ->where('link', 'LIKE', '%' . $request->search . '%')
+                         ->where(function ($query) use ($search) {
+                            $query->where('link', 'LIKE', '%' . $search . '%')
+                                ->orWhere('name', 'LIKE', '%' . $search . '%');
+                         })
                          ->get();
             // dd(DB::getQueryLog());
         }else{

@@ -18,27 +18,42 @@ class FrontendController extends Controller
         $id = Auth::id();
         DB::enableQueryLog();
             if (Auth::user()->roles == 'KETUA') {
+                // dd(DB::getQueryLog());
                 $link = Link::where('user_id', $id)
                              ->where('category_user_id', null)
                              ->get();
+                if ($link->count() > 0) {
+                    $linkTotal = $link-count();
+                } else {
+                    $linkTotal = 0;
+                }
+
+                // dd($linkTotal);
+                
                 $category = CategoryUser::where('user_id', Auth::id())->get();
                 // dd($link);
                 // foreach ($category as $cat) {
                 //     dd($category);
                 // }
                 // dd($ketuas);
-                return view('page.users.link', compact( 'link', 'category'));
+                return view('page.users.link', compact( 'link', 'category', 'linkTotal'));
             } else {
                 $link = Link::where('user_id', Auth::id())
-                             ->where('category_user_id' == null)
+                             ->where('category_user_id', null)
                              ->get();
+                if ($link->count() > 0) {
+                    $linkTotal = $link-count();
+                } else {
+                    $linkTotal = 0;
+                }
+                // dd($linkTotal);
                 $category = CategoryUser::where('user_id', Auth::id())->get();
                 // dd($categories);
                 // foreach ($categories as $cat) {
                 //     $category = $cat->links->where('user_id', $id);
                 // }
                 // dd($category[0]->links->where('user_id', 5));
-                return view('page.users.link', compact('link', 'category'));
+                return view('page.users.link', compact('link', 'category', 'linkTotal'));
             }
             
             // dd($id);

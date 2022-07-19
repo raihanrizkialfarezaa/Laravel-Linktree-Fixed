@@ -17,6 +17,7 @@ class OfficeController extends Controller
     {
         if($request->filled('search')){
             $office = Office::where('link', 'LIKE', '%' . $request->search . '%')
+                             ->orWhere('name', 'LIKE', '%' . $request->search . '%')
                              ->get();
         }else{
             if ($request->filled('showAll')) {
@@ -92,7 +93,8 @@ class OfficeController extends Controller
         
         $update = $office->update([
             'links' => $request->links,
-            'name' => $request->name
+            'name' => $request->name,
+            'category_id' => $request->category_id
         ]);
 
         return redirect()->route('office.index');
