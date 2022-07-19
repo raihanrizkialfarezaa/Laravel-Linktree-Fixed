@@ -47,7 +47,7 @@
         <li class="nav-item {{ Request::is('category') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('category.index') }}">
                 <i class="fas fa-fw fa-people-arrows"></i>
-                <span>Category Link Office</span></a>
+                <span>Category Link Office & Ketua</span></a>
         </li>
         <li class="nav-item {{ Request::is('categoryuser*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('categoryuser.index') }}">

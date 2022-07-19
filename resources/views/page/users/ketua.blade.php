@@ -80,9 +80,15 @@
                     <h1 class="text-center h1-text">{{ Auth::user()->name }}</h1>
                 </div>
                 <div class="mt-4"></div>
+                @if (Auth::user()->roles == 'ADMIN')
+                    <div class="rounded-border-2 mx-auto">
+                        <h1 class="text-center h1-text">Sebagai : ADMIN</h1>
+                    </div>
+                @else
                 <div class="rounded-border-1 mx-auto">
                     <h1 class="text-center h1-text">Sebagai : KETUA SUPERVISI</h1>
                 </div>
+                @endif
             @endauth
         </div>
         <div class="row d-flex justify-content-center">
