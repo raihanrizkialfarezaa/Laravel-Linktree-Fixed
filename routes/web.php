@@ -25,7 +25,7 @@ use App\Http\Controllers\CategoryUserController;
 //     return view('welcome');
 // });
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [DashboardController::class, 'index'])->name ('dashboard')->middleware('auth');

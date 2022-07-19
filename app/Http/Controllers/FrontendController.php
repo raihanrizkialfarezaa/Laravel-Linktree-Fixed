@@ -23,7 +23,7 @@ class FrontendController extends Controller
                              ->where('category_user_id', null)
                              ->get();
                 if ($link->count() > 0) {
-                    $linkTotal = $link-count();
+                    $linkTotal = $link->count();
                 } else {
                     $linkTotal = 0;
                 }
@@ -42,7 +42,7 @@ class FrontendController extends Controller
                              ->where('category_user_id', null)
                              ->get();
                 if ($link->count() > 0) {
-                    $linkTotal = $link-count();
+                    $linkTotal = $link->count();
                 } else {
                     $linkTotal = 0;
                 }
