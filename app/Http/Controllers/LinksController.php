@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Session;
 use App\Models\Link;
 use App\Models\User;
 use App\Models\Category;
@@ -69,7 +70,13 @@ class LinksController extends Controller
 
         $id = Auth::id();
         $data['user_id'] = $id;
-        $create = Link::create($data);
+        if (empty($request->link)) {
+            Session::flash('gagal','Link tidak boleh kosong');
+		    return redirect()->route('links.create');
+        } else {
+            $create = Link::create($data);
+        }
+        
         return redirect()->route('links.index');
         
     }

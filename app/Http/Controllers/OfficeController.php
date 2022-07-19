@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Office;
 use App\Models\Category;
+use Session;
 use Illuminate\Http\Request;
 
 class OfficeController extends Controller
@@ -51,7 +52,12 @@ class OfficeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        Office::create($data);
+        if (empty($request->link)) {
+            Session::flash('gagal','Link tidak boleh kosong');
+		    return redirect()->route('office.create');
+        } else {
+            $create = Office::create($data);
+        }
         return redirect()->route('office.index');
     }
 

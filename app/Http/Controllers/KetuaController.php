@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Session;
 use App\Models\Ketua;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -66,7 +67,12 @@ class KetuaController extends Controller
     {
         $data = $request->all();
 
-        $create = Ketua::create($data);
+        if (empty($request->link)) {
+            Session::flash('gagal','Link tidak boleh kosong');
+		    return redirect()->route('ketua.create');
+        } else {
+            $create = Ketua::create($data);
+        }
         return redirect()->route('ketua.index');
         
     }
