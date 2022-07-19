@@ -32,7 +32,7 @@
         <li class="nav-item {{ Request::is('links*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('links.index') }}">
                 <i class="fas fa-fw fa-people-arrows"></i>
-                <span>Links</span></a>
+                <span>My Links</span></a>
         </li>
         <li class="nav-item {{ Request::is('office*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('office.index') }}">

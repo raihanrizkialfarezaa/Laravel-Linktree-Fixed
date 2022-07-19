@@ -61,6 +61,10 @@ class CategoryUserController extends Controller
         if ($name != null) {
             Session::flash('gagal','Nama category sudah ada');
 		    return redirect()->route('categoryuser.create');
+        } 
+        elseif(empty($request->name)) {
+            Session::flash('gagal','Nama category tidak boleh kosong');
+		    return redirect()->route('categoryuser.create');
         } else {
             $create = CategoryUser::create($data);
         }

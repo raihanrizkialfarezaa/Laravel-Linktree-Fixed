@@ -54,7 +54,11 @@ class CategoryController extends Controller
         $data = $request->all();
         $name = Category::where('name', $request->name)->count();
         // dd($name);
-        if ($name != 0) {
+        if (empty($request->name)) {
+            Session::flash('gagal','Nama category tidak boleh kosong');
+		    return redirect()->route('category.create');
+        }
+        elseif($name != 0) {
             Session::flash('gagal','Nama category sudah ada');
 		    return redirect()->route('category.create');
         } else {
