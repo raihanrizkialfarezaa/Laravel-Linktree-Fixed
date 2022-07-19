@@ -69,7 +69,7 @@
         @else
             <h1 class="text-center mt-5">Data tidak ditemukan</h1>
         @endif
-        @if (request()->get('search') == null && empty(request()->get('showAll')) && $ketua->count() > 10)
+        @if (request()->get('search') == null && empty(request()->get('showAll')))
             {{ $ketua->links() }}
             <form method="GET">
                 <div class="form-group">
@@ -77,7 +77,7 @@
                     <button class="btn btn-success mt-3" type="submit" id="button-addon2">Show All</button>
                 </div>
             </form>
-        @elseif (empty(request()->get('search')) && $ketua->count() > 10)
+        @elseif (empty(request()->get('search')))
             <form method="GET">
                 <div class="form-group">
                     <input type="hidden" value="showAll" name="showAll">

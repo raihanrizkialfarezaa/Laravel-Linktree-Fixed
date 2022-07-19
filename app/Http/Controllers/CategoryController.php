@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Session;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,9 +13,23 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $category = Category::all();
+        if($request->filled('search')){
+            $search = $request->search;
+            $category = Category::where(function ($query) use ($search) {
+                            $query->where('name', 'LIKE', '%' . $search . '%');
+                         })
+                         ->get();
+            // dd(DB::getQueryLog());
+        }else{
+            if ($request->filled('showAll')) {
+                $category = Category::all();
+            } else {
+                $category = Category::paginate(10);
+            }
+            
+        }
         return view('page.admin.category.index', compact('category'));
     }
 
@@ -37,7 +52,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $create = Category::create($data);
+        $name = Category::where('name', $request->name)->count();
+        // dd($name);
+        if ($name != 0) {
+            Session::flash('gagal','Nama category sudah ada');
+		    return redirect()->route('category.create');
+        } else {
+            $create = Category::create($data);
+        }
+        
         return redirect()->route('category.index');
     }
 
@@ -75,10 +98,17 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
+        $name = Category::where('name', $request->name)->first();
 
-        $update = $category->update([
-            'name' => $request->name
-        ]);
+        if ($name != null) {
+            Session::flash('gagal','Nama category sudah ada');
+            return redirect()->route('category.edit');
+        } else {
+            $update = $category->update([
+                'name' => $request->name
+            ]);
+        }
+        
 
         return redirect()->route('category.index');
     }

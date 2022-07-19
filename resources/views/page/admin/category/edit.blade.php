@@ -26,6 +26,12 @@
 					<form action="{{ route('category.update', $category->id) }}" method="POST" enctype="multipart/form-data">
 						@method('PUT')
 						@csrf
+						@if ($message = Session::get('gagal'))
+							<div class="alert alert-danger">
+								<button type="button" class="close" data-dismiss="alert">×</button> 
+								<strong>{{ $message }}</strong>
+							</div>
+						@endif
 						<div class="form-group">
 							<label for="judul">Category Name</label>
 							<input type="text" value="{{ $category->name }}" class="form-control" name="name">

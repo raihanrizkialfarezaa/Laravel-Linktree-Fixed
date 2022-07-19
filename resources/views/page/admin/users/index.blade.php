@@ -70,7 +70,7 @@
             <h1 class="mt-5 text-center">Data Not Found</h1>
         @endif
 
-        @if (request()->get('search') == null && empty(request()->get('showAll')) && $user->count() > 10)
+        @if (request()->get('search') == null && empty(request()->get('showAll')))
             {{ $user->links() }}
             <form method="GET">
                 <div class="form-group">
@@ -78,7 +78,7 @@
                     <button class="btn btn-success mt-3" type="submit" id="button-addon2">Show All</button>
                 </div>
             </form>
-        @elseif (empty(request()->get('search')) && $user->count() > 10)
+        @elseif (empty(request()->get('search')))
             <form method="GET">
                 <div class="form-group">
                     <input type="hidden" value="showAll" name="showAll">

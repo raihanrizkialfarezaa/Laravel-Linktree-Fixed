@@ -21,6 +21,12 @@ class FrontendController extends Controller
                 // dd(DB::getQueryLog());
                 $link = Link::where('user_id', $id)
                              ->where('category_user_id', null)
+                             ->when('name' != null, function ($query) {
+                                $query->orderBy('name', 'ASC');
+                             })
+                             ->when('name' == null, function ($query) {
+                                $query->orderBy('link', 'ASC');
+                             })
                              ->get();
                 if ($link->count() > 0) {
                     $linkTotal = $link->count();
@@ -30,7 +36,9 @@ class FrontendController extends Controller
 
                 // dd($linkTotal);
                 
-                $category = CategoryUser::where('user_id', Auth::id())->get();
+                $category = CategoryUser::where('user_id', Auth::id())
+                                         ->orderBy('name', 'ASC')
+                                         ->get();
                 // dd($link);
                 // foreach ($category as $cat) {
                 //     dd($category);
@@ -40,6 +48,12 @@ class FrontendController extends Controller
             } else {
                 $link = Link::where('user_id', Auth::id())
                              ->where('category_user_id', null)
+                             ->when('name' != null, function ($query) {
+                                $query->orderBy('name', 'DESC');
+                             })
+                             ->when('name' == null, function ($query) {
+                                $query->orderBy('link', 'ASC');
+                             })
                              ->get();
                 if ($link->count() > 0) {
                     $linkTotal = $link->count();
@@ -47,7 +61,9 @@ class FrontendController extends Controller
                     $linkTotal = 0;
                 }
                 // dd($linkTotal);
-                $category = CategoryUser::where('user_id', Auth::id())->get();
+                $category = CategoryUser::where('user_id', Auth::id())
+                                         ->orderBy('name', 'ASC')
+                                         ->get();
                 // dd($categories);
                 // foreach ($categories as $cat) {
                 //     $category = $cat->links->where('user_id', $id);
@@ -70,12 +86,12 @@ class FrontendController extends Controller
                 ->orWhere('link', 'LIKE', 'http://%');
         })
         ->get();
-        $category = Category::all();
+        $category = Category::orderBy('name', 'ASC')->get();
         return view('page.users.office', compact('office', 'offices', 'category'));
     }
     public function ketualink() {
         if (Auth::user()->roles == 'KETUA' || Auth::user()->roles == 'ADMIN') {
-            $category = Category::all();
+            $category = Category::orderBy('name', 'ASC')->get();
             return view('page.users.ketua', compact('category'));
         } else {
             return redirect('/');

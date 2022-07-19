@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoryUser;
 use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class CategoryUserController extends Controller
@@ -13,9 +14,24 @@ class CategoryUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $category = CategoryUser::where('user_id', Auth::id())->get();
+        if($request->filled('search')){
+            $search = $request->search;
+            $category = CategoryUser::where('user_id', Auth::id())
+                         ->where(function ($query) use ($search) {
+                            $query->where('name', 'LIKE', '%' . $search . '%');
+                         })
+                         ->get();
+            // dd(DB::getQueryLog());
+        }else{
+            if ($request->filled('showAll')) {
+                $category = CategoryUser::where('user_id', Auth::id())->get();
+            } else {
+                $category = CategoryUser::where('user_id', Auth::id())->paginate(10);
+            }
+            
+        }
         return view('page.admin.categoryuser.index', compact('category'));
     }
 
@@ -39,7 +55,15 @@ class CategoryUserController extends Controller
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
-        $create = CategoryUser::create($data);
+        $name = CategoryUser::where('user_id', Auth::id())
+                             ->where('name', $request->name)
+                             ->first();
+        if ($name != null) {
+            Session::flash('gagal','Nama category sudah ada');
+		    return redirect()->route('categoryuser.create');
+        } else {
+            $create = CategoryUser::create($data);
+        }
         return redirect()->route('categoryuser.index');
     }
 
@@ -77,10 +101,18 @@ class CategoryUserController extends Controller
     public function update(Request $request, $id)
     {
         $category = CategoryUser::findOrFail($id);
+        $name = CategoryUser::where('user_id', Auth::id())
+                             ->where('name', $request->name)
+                             ->first();
 
-        $update = $category->update([
-            'name' => $request->name
-        ]);
+        if ($name != null) {
+            Session::flash('gagal','Nama category sudah ada');
+            return redirect()->route('categoryuser.edit');
+        } else {
+            $update = $category->update([
+                'name' => $request->name
+            ]);
+        }
 
         return redirect()->route('categoryuser.index');
     }

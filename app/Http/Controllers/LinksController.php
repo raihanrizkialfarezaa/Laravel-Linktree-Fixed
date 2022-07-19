@@ -32,13 +32,33 @@ class LinksController extends Controller
                             $query->where('link', 'LIKE', '%' . $search . '%')
                                 ->orWhere('name', 'LIKE', '%' . $search . '%');
                          })
+                         ->when('name' != null, function ($query) {
+                            $query->orderBy('name', 'DESC');
+                         })
+                         ->when('name' == null, function ($query) {
+                            $query->orderBy('link', 'ASC');
+                         })
                          ->get();
             // dd(DB::getQueryLog());
         }else{
             if ($request->filled('showAll')) {
-                $links = Link::where('user_id', $id);
+                $links = Link::where('user_id', $id)
+                              ->when('name' != null, function ($query) {
+                                $query->orderBy('name', 'ASC');
+                              })
+                              ->when('name' == null, function ($query) {
+                                $query->orderBy('link', 'ASC');
+                              })
+                              ->get();
             } else {
-                $links = Link::where('user_id', $id)->paginate(10);
+                $links = Link::where('user_id', $id)
+                              ->when('name' != null, function ($query) {
+                                $query->orderBy('name', 'ASC');
+                              })
+                              ->when('name' == null, function ($query) {
+                                $query->orderBy('link', 'ASC');
+                              })
+                              ->paginate(10);
             }
             
         }

@@ -24,6 +24,12 @@
 			<div class="card-body">
 				<form action="{{ route('categoryuser.store') }}" method="POST" enctype="multipart/form-data">
 					@csrf
+					@if ($message = Session::get('gagal'))
+						<div class="alert alert-danger">
+							<button type="button" class="close" data-dismiss="alert">×</button> 
+							<strong>{{ $message }}</strong>
+						</div>
+					@endif
 					<div class="form-group">
 						<label for="judul">Category Name</label>
 						<input type="text" class="form-control" name="name">
