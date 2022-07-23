@@ -129,7 +129,8 @@ body {
 }
 
 .rounded-border {
- width: 130px;
+ word-break: break;
+ width: 320px;
  height: 37px;
  background: linear-gradient(278.47deg, #0BCD65 -5.47%, rgba(11, 205, 101, 0) 142.2%);
  border-radius: 33px;
